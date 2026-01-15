@@ -1,851 +1,1757 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>KA Global — Funding Options Menu</title>
-  <meta name="description" content="KA Global LLC — Funding Options Menu (including Tokenization + Non-Tokenization paths). Client-ready, high-end single-page experience." />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KA Global | Institutional Capital Placement</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Syne:wght@400;500;600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        @keyframes grain {
+            0%, 100% { transform: translate(0, 0) }
+            10% { transform: translate(-5%, -10%) }
+            20% { transform: translate(-15%, 5%) }
+            30% { transform: translate(7%, -25%) }
+            40% { transform: translate(-5%, 25%) }
+            50% { transform: translate(-15%, 10%) }
+            60% { transform: translate(15%, 0%) }
+            70% { transform: translate(0%, 15%) }
+            80% { transform: translate(3%, 35%) }
+            90% { transform: translate(-10%, 10%) }
+        }
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(2deg); }
+        }
 
-  <style>
-    :root{
-      /* Pro, stable palette (no mid-page banding) */
-      --bg:#0a0f1c;
-      --bg2:#0b1222; /* used for large panels only */
-      --surface: rgba(255,255,255,.055);
-      --surface2: rgba(255,255,255,.075);
-      --stroke: rgba(255,255,255,.12);
+        @keyframes shimmer {
+            0% { background-position: -200% center; }
+            100% { background-position: 200% center; }
+        }
 
-      --text: rgba(255,255,255,.92);
-      --muted: rgba(255,255,255,.70);
-      --muted2: rgba(255,255,255,.56);
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(40px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
 
-      --accent:#7c3aed;
-      --accent2:#06b6d4;
+        @keyframes scaleIn {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
 
-      --shadow: 0 18px 55px rgba(0,0,0,.42);
-      --shadow2: 0 10px 26px rgba(0,0,0,.32);
+        @keyframes lineExpand {
+            from { transform: scaleX(0); }
+            to { transform: scaleX(1); }
+        }
 
-      --radius: 18px;
-      --radius2: 14px;
-      --ring: 0 0 0 1px var(--stroke) inset;
-      --ease: cubic-bezier(.2,.7,.2,1);
-    }
+        @keyframes pulse {
+            0%, 100% { opacity: 0.4; }
+            50% { opacity: 0.8; }
+        }
 
-    [data-theme="light"]{
-      --bg:#f6f7fb;
-      --bg2:#ffffff;
-      --surface: rgba(15,23,42,.045);
-      --surface2: rgba(15,23,42,.065);
-      --stroke: rgba(15,23,42,.12);
+        @keyframes numberCount {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
 
-      --text: rgba(15,23,42,.92);
-      --muted: rgba(15,23,42,.72);
-      --muted2: rgba(15,23,42,.56);
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-      --shadow: 0 18px 55px rgba(2,6,23,.12);
-      --shadow2: 0 10px 26px rgba(2,6,23,.10);
-      --ring: 0 0 0 1px var(--stroke) inset;
-    }
+        :root {
+            --obsidian: #0A0A0B;
+            --onyx: #121214;
+            --carbon: #1A1A1D;
+            --graphite: #2A2A2E;
+            --silver: #8A8A8F;
+            --platinum: #C4C4C8;
+            --ivory: #FAFAF9;
+            --gold: #D4AF37;
+            --gold-light: #E8C860;
+            --gold-dark: #B8960F;
+            --gold-muted: rgba(212, 175, 55, 0.15);
+            --emerald: #2D5A4A;
+            --accent: #FF6B35;
+        }
 
-    *{box-sizing:border-box}
-    html,body{height:100%}
-    body{
-      margin:0;
-      font-family: Manrope, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
-      color:var(--text);
-      background: var(--bg);
-      overflow-x:hidden;
-      position:relative;
-    }
+        html {
+            scroll-behavior: smooth;
+        }
 
-    /* Fixed, subtle glows to avoid hard banding lines */
-    body::before{
-      content:"";
-      position:fixed;
-      inset:-220px -180px;
-      pointer-events:none;
-      z-index:-2;
-      background:
-        radial-gradient(900px 650px at 12% 8%, rgba(124,58,237,.18), transparent 62%),
-        radial-gradient(750px 560px at 92% 10%, rgba(6,182,212,.12), transparent 62%),
-        radial-gradient(900px 700px at 50% 110%, rgba(124,58,237,.10), transparent 64%);
-      filter: blur(0px);
-      opacity:.95;
-      transform: translateZ(0);
-    }
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: var(--obsidian);
+            color: var(--platinum);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
 
-    /* Subtle texture so large areas don't "blend together" */
-    body::after{
-      content:"";
-      position:fixed;
-      inset:0;
-      pointer-events:none;
-      z-index:-1;
-      background-image:
-        radial-gradient(rgba(255,255,255,.035) 1px, transparent 1px);
-      background-size: 26px 26px;
-      opacity: .18;
-      mix-blend-mode: overlay;
-    }
-    [data-theme="light"] body::after{
-      background-image: radial-gradient(rgba(15,23,42,.06) 1px, transparent 1px);
-      opacity:.16;
-      mix-blend-mode: multiply;
-    }
+        /* Grain Overlay */
+        body::before {
+            content: '';
+            position: fixed;
+            top: -50%;
+            left: -50%;
+            right: -50%;
+            bottom: -50%;
+            width: 200%;
+            height: 200%;
+            background: transparent url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+            opacity: 0.03;
+            pointer-events: none;
+            z-index: 9999;
+            animation: grain 8s steps(10) infinite;
+        }
 
-    a{color:inherit;text-decoration:none}
-    .wrap{max-width:1160px;margin:0 auto;padding:22px 18px 86px}
+        /* Selection */
+        ::selection {
+            background: var(--gold);
+            color: var(--obsidian);
+        }
 
-    /* NAV */
-    .nav{
-      position:sticky; top:0; z-index:50;
-      backdrop-filter: blur(12px);
-      background: rgba(10,15,28,.78);
-      border-bottom: 1px solid var(--stroke);
-    }
-    [data-theme="light"] .nav{background: rgba(255,255,255,.86)}
-    .navInner{max-width:1160px;margin:0 auto;padding:12px 18px;display:flex;align-items:center;gap:12px}
-    .brand{display:flex;align-items:center;gap:10px;min-width:240px;}
-    .logo{
-      width:38px;height:38px;border-radius:12px;
-      background: linear-gradient(135deg, rgba(124,58,237,.95), rgba(6,182,212,.85));
-      box-shadow: var(--shadow2);
-      position:relative;
-    }
-    .logo::after{
-      content:""; position:absolute; inset:1px; border-radius:11px;
-      box-shadow: 0 0 0 1px rgba(255,255,255,.14) inset;
-      opacity:.95;
-    }
-    [data-theme="light"] .logo::after{box-shadow: 0 0 0 1px rgba(15,23,42,.14) inset;}
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--onyx);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(180deg, var(--gold), var(--gold-dark));
+            border-radius: 3px;
+        }
 
-    .brandTitle{line-height:1.05}
-    .brandTitle b{display:block;font-size:14px;letter-spacing:.2px}
-    .brandTitle span{display:block;font-size:12px;color:var(--muted2)}
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 6rem 4rem;
+            background: 
+                radial-gradient(ellipse 80% 50% at 20% 40%, rgba(212, 175, 55, 0.08) 0%, transparent 50%),
+                radial-gradient(ellipse 60% 60% at 80% 20%, rgba(45, 90, 74, 0.1) 0%, transparent 50%),
+                linear-gradient(180deg, var(--obsidian) 0%, var(--onyx) 100%);
+            overflow: hidden;
+        }
 
-    .navLinks{display:flex;gap:14px;flex:1;align-items:center;justify-content:center;flex-wrap:wrap}
-    .navLinks a{
-      font-size:12.5px;color:var(--muted);
-      padding:8px 10px;border-radius:999px;
-      transition: background .18s var(--ease), color .18s var(--ease);
-    }
-    .navLinks a:hover{background: var(--surface); color:var(--text);}
-    .navActions{display:flex;gap:10px;align-items:center;justify-content:flex-end;min-width:240px}
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+        }
 
-    .btn{
-      border: 1px solid var(--stroke);
-      background: var(--surface);
-      color:var(--text);
-      padding:9px 12px;
-      border-radius:12px;
-      font-size:12.5px;
-      cursor:pointer;
-      box-shadow: var(--ring);
-      transition: transform .18s var(--ease), background .18s var(--ease);
-      user-select:none;
-      white-space:nowrap;
-    }
-    .btn:hover{transform: translateY(-1px); background: var(--surface2);}
-    .btn.primary{
-      border-color: rgba(124,58,237,.35);
-      background: linear-gradient(135deg, rgba(124,58,237,.92), rgba(6,182,212,.62));
-      box-shadow: var(--shadow2);
-    }
+        /* Geometric Decorations */
+        .geo-decoration {
+            position: absolute;
+            pointer-events: none;
+        }
 
-    .pill{
-      display:inline-flex;align-items:center;gap:8px;
-      padding:6px 10px;border-radius:999px;
-      background: rgba(255,255,255,.045);
-      border: 1px solid var(--stroke);
-      color: var(--muted);
-      font-size:12px;
-    }
-    [data-theme="light"] .pill{background: rgba(15,23,42,.03)}
+        .geo-1 {
+            top: 10%;
+            right: 5%;
+            width: 400px;
+            height: 400px;
+            border: 1px solid var(--gold-muted);
+            border-radius: 50%;
+            animation: float 20s ease-in-out infinite;
+        }
 
-    /* HERO */
-    .hero{
-      padding:18px 0 12px;
-      display:grid;
-      grid-template-columns: 1.15fr .85fr;
-      gap:14px;
-      align-items:stretch;
-    }
-    @media (max-width: 960px){ .hero{grid-template-columns:1fr;}}
+        .geo-2 {
+            bottom: 15%;
+            left: 3%;
+            width: 200px;
+            height: 200px;
+            border: 1px solid var(--gold-muted);
+            transform: rotate(45deg);
+            animation: float 15s ease-in-out infinite reverse;
+        }
 
-    .panel{
-      border: 1px solid var(--stroke);
-      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      overflow:hidden;
-      position:relative;
-    }
-    [data-theme="light"] .panel{
-      background: linear-gradient(180deg, rgba(15,23,42,.045), rgba(15,23,42,.02));
-    }
-    .panelInner{padding:20px}
+        .geo-3 {
+            top: 40%;
+            right: 15%;
+            width: 80px;
+            height: 80px;
+            background: var(--gold-muted);
+            animation: pulse 4s ease-in-out infinite;
+        }
 
-    .heroKicker{
-      display:flex; gap:10px; flex-wrap:wrap; align-items:center;
-      margin-bottom:8px;
-    }
+        /* Navigation */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            padding: 1.5rem 4rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            background: linear-gradient(180deg, rgba(10, 10, 11, 0.95), transparent);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
 
-    h1{
-      margin:6px 0 10px;
-      font-size:36px;
-      letter-spacing:-.6px;
-      line-height:1.06;
-    }
-    @media (max-width: 520px){h1{font-size:30px}}
-    .sub{
-      margin:0;
-      color:var(--muted);
-      font-size:14.5px;
-      line-height:1.58;
-      max-width:66ch;
-    }
-    .heroRow{margin-top:16px;display:flex;gap:10px;flex-wrap:wrap;align-items:center}
-    .stats{
-      display:grid; grid-template-columns: 1fr 1fr;
-      gap:12px;
-      padding:16px;
-    }
-    @media (max-width: 520px){.stats{grid-template-columns:1fr}}
-    .stat{
-      border: 1px solid var(--stroke);
-      background: var(--surface);
-      border-radius: var(--radius2);
-      padding:14px 14px 12px;
-      box-shadow: var(--ring);
-    }
-    .stat b{display:block;font-size:18px;letter-spacing:-.2px}
-    .stat span{display:block;margin-top:4px;color:var(--muted2);font-size:12.5px;line-height:1.35}
+        .logo {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 800;
+            letter-spacing: 0.3em;
+            color: var(--ivory);
+        }
 
-    /* SECTION WRAPPERS (prevents blending) */
-    .sectionBlock{
-      margin-top:14px;
-      border: 1px solid var(--stroke);
-      background: rgba(255,255,255,.03);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow2);
-      overflow:hidden;
-    }
-    [data-theme="light"] .sectionBlock{background: rgba(15,23,42,.02)}
-    .sectionPad{padding:16px}
+        .logo span {
+            color: var(--gold);
+        }
 
-    .sectionHead{
-      display:flex;align-items:flex-end;justify-content:space-between;gap:12px;flex-wrap:wrap;
-      padding:16px 16px 10px;
-      border-bottom: 1px solid rgba(255,255,255,.07);
-      background: linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,0));
-    }
-    [data-theme="light"] .sectionHead{
-      border-bottom: 1px solid rgba(15,23,42,.08);
-      background: linear-gradient(180deg, rgba(15,23,42,.015), rgba(15,23,42,0));
-    }
-    h2{margin:0;font-size:18px;letter-spacing:-.2px}
-    .hint{color:var(--muted2);font-size:12.5px;line-height:1.35}
-    .sectionBody{padding:14px 16px 16px}
+        .nav-contact {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
 
-    /* Router */
-    .router{
-      display:flex;gap:10px;flex-wrap:wrap;align-items:center;
-      border: 1px solid rgba(255,255,255,.10);
-      background: var(--surface);
-      border-radius: var(--radius);
-      padding:12px;
-      box-shadow: var(--ring);
-    }
-    .search{
-      flex: 1; min-width: 220px;
-      display:flex; align-items:center; gap:10px;
-      border: 1px solid var(--stroke);
-      background: rgba(0,0,0,.12);
-      border-radius: 14px;
-      padding:10px 12px;
-    }
-    [data-theme="light"] .search{background: rgba(15,23,42,.03)}
-    .search input{
-      width:100%;
-      border:none; outline:none;
-      background:transparent;
-      color:var(--text);
-      font-size:13px;
-    }
-    .search input::placeholder{color:var(--muted2)}
-    .filters{display:flex;gap:8px;flex-wrap:wrap}
-    .chip{
-      font-size:12.5px;
-      padding:8px 10px;
-      border-radius: 999px;
-      border: 1px solid var(--stroke);
-      background: rgba(255,255,255,.03);
-      color: var(--muted);
-      cursor:pointer;
-      transition: transform .16s var(--ease), background .16s var(--ease), color .16s var(--ease);
-      user-select:none;
-    }
-    [data-theme="light"] .chip{background: rgba(15,23,42,.02)}
-    .chip:hover{transform: translateY(-1px); background: var(--surface2); color: var(--text)}
-    .chip.active{
-      background: rgba(124,58,237,.14);
-      border-color: rgba(124,58,237,.38);
-      color: var(--text);
-    }
+        .nav-link {
+            font-size: 0.75rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--silver);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
 
-    /* Cards */
-    .grid{
-      display:grid;
-      grid-template-columns: repeat(12, 1fr);
-      gap: 14px;
-    }
-    .card{
-      grid-column: span 6;
-      border: 1px solid var(--stroke);
-      background: linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.028));
-      border-radius: var(--radius);
-      box-shadow: var(--shadow2);
-      overflow:hidden;
-      transition: transform .18s var(--ease), border-color .18s var(--ease), background .18s var(--ease);
-    }
-    [data-theme="light"] .card{background: linear-gradient(180deg, rgba(15,23,42,.04), rgba(15,23,42,.02))}
-    .card:hover{transform: translateY(-2px); border-color: rgba(255,255,255,.18); background: linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.03))}
-    [data-theme="light"] .card:hover{border-color: rgba(15,23,42,.16)}
-    .card.full{grid-column: span 12}
-    @media (max-width: 980px){ .card{grid-column: span 12} }
-    .cardInner{padding:16px 16px 14px}
+        .nav-link:hover {
+            color: var(--gold);
+        }
 
-    .topline{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
-    .badge{
-      display:inline-flex;align-items:center;gap:8px;
-      padding:6px 10px;border-radius:999px;
-      border: 1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.03);
-      font-size:12px;
-      color: var(--muted);
-    }
-    [data-theme="light"] .badge{background: rgba(15,23,42,.02); border-color: rgba(15,23,42,.10)}
-    .badge strong{color:var(--text); font-weight:600}
+        /* Hero Content */
+        .hero-content {
+            max-width: 900px;
+            position: relative;
+            z-index: 1;
+        }
 
-    .tag{
-      padding:6px 10px;border-radius:999px;font-size:12px;
-      border:1px solid rgba(124,58,237,.32);
-      background: rgba(124,58,237,.09);
-      color: var(--text);
-    }
-    [data-theme="light"] .tag{color: rgba(15,23,42,.92)}
+        .hero-eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            animation: fadeUp 1s ease-out forwards;
+        }
 
-    .card h3{margin:10px 0 6px;font-size:16px;letter-spacing:-.2px}
-    .card p{margin:0;color:var(--muted);font-size:13.5px;line-height:1.55}
+        .hero-eyebrow::before {
+            content: '';
+            width: 60px;
+            height: 1px;
+            background: var(--gold);
+        }
 
-    .list{margin:12px 0 0;padding:0;list-style:none;display:grid;gap:8px}
-    .list li{
-      display:flex;gap:10px;align-items:flex-start;
-      color: var(--muted);
-      font-size:13px;
-      line-height:1.45;
-    }
-    .dot{
-      width:9px;height:9px;border-radius:3px;margin-top:4px;flex:0 0 auto;
-      background: linear-gradient(135deg, rgba(124,58,237,.9), rgba(6,182,212,.75));
-    }
-    .ctaRow{margin-top:14px;display:flex;gap:10px;flex-wrap:wrap;align-items:center}
-    .mutedSmall{color:var(--muted2);font-size:12.5px;line-height:1.35}
+        .hero-eyebrow span {
+            font-size: 0.7rem;
+            letter-spacing: 0.4em;
+            text-transform: uppercase;
+            color: var(--gold);
+            font-weight: 600;
+        }
 
-    /* Timelines */
-    .twoCol{display:grid; grid-template-columns: 1fr 1fr; gap: 14px;}
-    @media (max-width: 980px){ .twoCol{grid-template-columns:1fr} }
+        .hero-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 400;
+            line-height: 1.1;
+            color: var(--ivory);
+            margin-bottom: 2rem;
+            animation: fadeUp 1s ease-out 0.2s forwards;
+            opacity: 0;
+        }
 
-    .timeline{
-      border: 1px solid var(--stroke);
-      background: var(--surface);
-      border-radius: var(--radius);
-      padding:14px;
-      box-shadow: var(--ring);
-      display:grid;
-      gap:12px;
-    }
-    .step{
-      display:grid;
-      grid-template-columns: 38px 1fr;
-      gap:12px;
-      align-items:start;
-      padding:10px 10px;
-      border-radius: 14px;
-      background: rgba(255,255,255,.03);
-      border: 1px solid rgba(255,255,255,.08);
-    }
-    [data-theme="light"] .step{background: rgba(15,23,42,.02); border-color: rgba(15,23,42,.10)}
-    .num{
-      width:38px;height:38px;border-radius:14px;
-      display:flex;align-items:center;justify-content:center;
-      background: linear-gradient(135deg, rgba(124,58,237,.92), rgba(6,182,212,.62));
-      color:white;font-weight:700;
-      box-shadow: var(--shadow2);
-    }
-    .step b{display:block;font-size:13.5px}
-    .step span{display:block;margin-top:4px;color:var(--muted);font-size:12.8px;line-height:1.45}
+        .hero-title em {
+            font-style: italic;
+            color: var(--gold);
+        }
 
-    /* Disclaimer */
-    .foot{
-      border:1px solid var(--stroke);
-      background: var(--surface);
-      border-radius: var(--radius);
-      padding:16px;
-      box-shadow: var(--ring);
-    }
-    .foot h4{margin:0 0 8px;font-size:14px}
-    .foot p{margin:0;color:var(--muted);font-size:12.8px;line-height:1.55}
-    .fineprint{margin-top:10px;color:var(--muted2);font-size:12px;line-height:1.5}
+        .hero-subtitle {
+            font-size: 1.15rem;
+            color: var(--silver);
+            max-width: 600px;
+            line-height: 1.9;
+            margin-bottom: 3rem;
+            animation: fadeUp 1s ease-out 0.4s forwards;
+            opacity: 0;
+        }
 
-    .hidden{display:none !important;}
-    @media (prefers-reduced-motion: reduce){ *{transition:none !important;} }
-  </style>
+        /* Stats Grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            margin-bottom: 3rem;
+            animation: fadeUp 1s ease-out 0.6s forwards;
+            opacity: 0;
+        }
+
+        .stat-card {
+            padding: 2rem;
+            background: linear-gradient(135deg, rgba(255,255,255,0.02), transparent);
+            border: 1px solid rgba(212, 175, 55, 0.1);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, var(--gold), transparent);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.5s;
+        }
+
+        .stat-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .stat-card:hover {
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.05), transparent);
+            border-color: rgba(212, 175, 55, 0.3);
+            transform: translateY(-4px);
+        }
+
+        .stat-value {
+            font-family: 'Syne', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--gold);
+            line-height: 1;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 0.65rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--silver);
+        }
+
+        /* CTA Buttons */
+        .hero-actions {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            animation: fadeUp 1s ease-out 0.8s forwards;
+            opacity: 0;
+        }
+
+        .btn-primary {
+            padding: 1.25rem 3rem;
+            background: var(--gold);
+            color: var(--obsidian);
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s;
+        }
+
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.5s;
+        }
+
+        .btn-primary:hover::before {
+            left: 100%;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 20px 40px rgba(212, 175, 55, 0.3);
+        }
+
+        .btn-outline {
+            padding: 1.25rem 3rem;
+            background: transparent;
+            color: var(--ivory);
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            text-decoration: none;
+            border: 1px solid rgba(255,255,255,0.2);
+            cursor: pointer;
+            transition: all 0.4s;
+        }
+
+        .btn-outline:hover {
+            border-color: var(--gold);
+            color: var(--gold);
+            transform: translateY(-3px);
+        }
+
+        /* Main Container */
+        .main-container {
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 0 4rem 6rem;
+        }
+
+        /* Section Headers */
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            margin-bottom: 4rem;
+            padding-top: 6rem;
+        }
+
+        .section-number {
+            font-family: 'Syne', sans-serif;
+            font-size: 5rem;
+            font-weight: 800;
+            color: transparent;
+            -webkit-text-stroke: 1px var(--gold-muted);
+            line-height: 1;
+        }
+
+        .section-title-group h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            font-weight: 500;
+            color: var(--ivory);
+            margin-bottom: 0.5rem;
+        }
+
+        .section-title-group p {
+            font-size: 0.9rem;
+            color: var(--silver);
+        }
+
+        /* Tokenization Flow */
+        .token-section {
+            background: linear-gradient(135deg, var(--onyx), var(--carbon));
+            border: 1px solid rgba(212, 175, 55, 0.1);
+            padding: 4rem;
+            margin-bottom: 4rem;
+            position: relative;
+        }
+
+        .token-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(180deg, var(--gold), var(--emerald));
+        }
+
+        .token-header {
+            margin-bottom: 3rem;
+        }
+
+        .token-badge {
+            display: inline-block;
+            padding: 0.5rem 1.5rem;
+            background: var(--gold-muted);
+            color: var(--gold);
+            font-size: 0.65rem;
+            font-weight: 600;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+        }
+
+        .token-header h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.25rem;
+            color: var(--ivory);
+            margin-bottom: 1rem;
+        }
+
+        .token-header p {
+            color: var(--silver);
+            max-width: 700px;
+            line-height: 1.8;
+        }
+
+        /* Timeline Flow */
+        .timeline {
+            display: flex;
+            justify-content: space-between;
+            position: relative;
+            margin: 4rem 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 40px;
+            left: 10%;
+            right: 10%;
+            height: 1px;
+            background: linear-gradient(90deg, var(--gold), var(--gold-muted), var(--gold));
+        }
+
+        .timeline-step {
+            flex: 1;
+            text-align: center;
+            position: relative;
+        }
+
+        .timeline-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 1.5rem;
+            background: var(--obsidian);
+            border: 2px solid var(--gold);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Syne', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--gold);
+            position: relative;
+            z-index: 1;
+            transition: all 0.4s;
+        }
+
+        .timeline-step:hover .timeline-icon {
+            background: var(--gold);
+            color: var(--obsidian);
+            transform: scale(1.1);
+        }
+
+        .timeline-title {
+            font-weight: 600;
+            color: var(--ivory);
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .timeline-desc {
+            font-size: 0.8rem;
+            color: var(--silver);
+            max-width: 150px;
+            margin: 0 auto;
+        }
+
+        /* Fee Structure */
+        .fee-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .fee-card {
+            padding: 2rem;
+            background: rgba(0,0,0,0.3);
+            border: 1px solid rgba(212, 175, 55, 0.15);
+            transition: all 0.4s;
+        }
+
+        .fee-card:hover {
+            border-color: var(--gold);
+            transform: translateY(-4px);
+        }
+
+        .fee-amount {
+            font-family: 'Syne', sans-serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--gold);
+            margin-bottom: 0.5rem;
+        }
+
+        .fee-timing {
+            font-size: 0.7rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--emerald);
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .fee-desc {
+            font-size: 0.9rem;
+            color: var(--silver);
+            line-height: 1.7;
+        }
+
+        .refund-notice {
+            grid-column: 1 / -1;
+            padding: 1.5rem 2rem;
+            background: linear-gradient(135deg, rgba(45, 90, 74, 0.2), transparent);
+            border-left: 3px solid var(--emerald);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .refund-notice svg {
+            flex-shrink: 0;
+        }
+
+        .refund-notice p {
+            font-size: 0.9rem;
+            color: var(--platinum);
+        }
+
+        /* Products Navigation */
+        .products-nav {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 3rem;
+            overflow-x: auto;
+            padding-bottom: 1rem;
+        }
+
+        .nav-pill {
+            padding: 1rem 2rem;
+            background: transparent;
+            border: 1px solid rgba(255,255,255,0.1);
+            color: var(--silver);
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s;
+            white-space: nowrap;
+        }
+
+        .nav-pill:hover {
+            border-color: var(--gold);
+            color: var(--gold);
+        }
+
+        .nav-pill.active {
+            background: var(--gold);
+            border-color: var(--gold);
+            color: var(--obsidian);
+        }
+
+        /* Products Grid */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .product-card {
+            background: linear-gradient(145deg, var(--onyx), var(--carbon));
+            border: 1px solid rgba(255,255,255,0.05);
+            padding: 2rem;
+            position: relative;
+            cursor: pointer;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            overflow: hidden;
+        }
+
+        .product-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.05), transparent);
+            opacity: 0;
+            transition: opacity 0.5s;
+        }
+
+        .product-card::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gold);
+            transition: width 0.5s;
+        }
+
+        .product-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(212, 175, 55, 0.3);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.4);
+        }
+
+        .product-card:hover::before {
+            opacity: 1;
+        }
+
+        .product-card:hover::after {
+            width: 100%;
+        }
+
+        .product-number {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            font-family: 'Syne', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: transparent;
+            -webkit-text-stroke: 1px rgba(212, 175, 55, 0.2);
+        }
+
+        .product-card h4 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.35rem;
+            color: var(--ivory);
+            margin-bottom: 1rem;
+            position: relative;
+        }
+
+        .product-card ul {
+            list-style: none;
+            margin-bottom: 1.5rem;
+        }
+
+        .product-card li {
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            font-size: 0.9rem;
+            color: var(--silver);
+            position: relative;
+        }
+
+        .product-card li::before {
+            content: '—';
+            position: absolute;
+            left: 0;
+            color: var(--gold);
+        }
+
+        .product-amount {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+            color: var(--obsidian);
+            font-family: 'Syne', sans-serif;
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+        }
+
+        /* Tab Sections */
+        .tab-section {
+            display: none;
+        }
+
+        .tab-section.active {
+            display: block;
+            animation: fadeUp 0.6s ease-out;
+        }
+
+        /* Intake Requirements */
+        .intake-section {
+            background: var(--onyx);
+            border: 1px solid rgba(255,255,255,0.05);
+            padding: 3rem;
+            margin: 4rem 0;
+        }
+
+        .intake-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .intake-block {
+            padding: 2rem;
+            background: rgba(0,0,0,0.3);
+            border-left: 2px solid var(--gold);
+        }
+
+        .intake-block h4 {
+            font-family: 'Syne', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--gold);
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+        }
+
+        .intake-block ul {
+            list-style: none;
+        }
+
+        .intake-block li {
+            padding: 0.6rem 0;
+            padding-left: 2rem;
+            font-size: 0.9rem;
+            color: var(--platinum);
+            position: relative;
+        }
+
+        .intake-block li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--gold);
+            font-weight: bold;
+        }
+
+        /* Disclaimer Section */
+        .disclaimer-section {
+            background: linear-gradient(180deg, var(--carbon), var(--obsidian));
+            padding: 5rem 4rem;
+            margin-top: 4rem;
+        }
+
+        .disclaimer-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .disclaimer-header h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            color: var(--gold);
+            margin-bottom: 1rem;
+        }
+
+        .disclaimer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .disclaimer-card {
+            padding: 2rem;
+            background: rgba(0,0,0,0.3);
+            border-left: 2px solid var(--gold-muted);
+            transition: all 0.3s;
+        }
+
+        .disclaimer-card:hover {
+            border-color: var(--gold);
+        }
+
+        .disclaimer-card h4 {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--gold);
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+        }
+
+        .disclaimer-card p {
+            font-size: 0.9rem;
+            color: var(--silver);
+            line-height: 1.8;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: 
+                radial-gradient(ellipse 60% 60% at 50% 50%, rgba(212, 175, 55, 0.1) 0%, transparent 60%),
+                var(--obsidian);
+            padding: 8rem 4rem;
+            text-align: center;
+            position: relative;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+        }
+
+        .cta-content {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .cta-content h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            color: var(--ivory);
+            margin-bottom: 1.5rem;
+        }
+
+        .cta-content h2 em {
+            font-style: italic;
+            color: var(--gold);
+        }
+
+        .contact-card {
+            display: inline-block;
+            padding: 2.5rem 4rem;
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), transparent);
+            border: 1px solid var(--gold-muted);
+            margin: 2rem 0;
+        }
+
+        .contact-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.75rem;
+            color: var(--gold);
+            margin-bottom: 1rem;
+        }
+
+        .contact-details a {
+            display: block;
+            color: var(--ivory);
+            text-decoration: none;
+            font-size: 1.1rem;
+            margin: 0.5rem 0;
+            transition: color 0.3s;
+        }
+
+        .contact-details a:hover {
+            color: var(--gold);
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--obsidian);
+            padding: 3rem 4rem;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            text-align: center;
+        }
+
+        .footer p {
+            font-size: 0.8rem;
+            color: var(--silver);
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .hero {
+                padding: 6rem 2rem;
+            }
+            
+            .nav {
+                padding: 1.5rem 2rem;
+            }
+            
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .main-container {
+                padding: 0 2rem 4rem;
+            }
+            
+            .token-section {
+                padding: 2.5rem;
+            }
+            
+            .timeline {
+                flex-direction: column;
+                gap: 2rem;
+            }
+            
+            .timeline::before {
+                display: none;
+            }
+            
+            .fee-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .intake-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .section-number {
+                font-size: 3rem;
+            }
+            
+            .section-title-group h2 {
+                font-size: 1.75rem;
+            }
+            
+            .cta-content h2 {
+                font-size: 2rem;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+            }
+            
+            .nav-contact {
+                display: none;
+            }
+        }
+    </style>
 </head>
-
 <body>
-  <div class="nav">
-    <div class="navInner">
-      <div class="brand">
-        <div class="logo" aria-hidden="true"></div>
-        <div class="brandTitle">
-          <b>KA Global LLC</b>
-          <span>Funding Options Menu</span>
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="logo">KA<span>.</span>GLOBAL</div>
+        <div class="nav-contact">
+            <a href="mailto:andrey@kaglobal.io" class="nav-link">andrey@kaglobal.io</a>
+            <a href="tel:+15855009643" class="nav-link">585-500-9643</a>
         </div>
-      </div>
+    </nav>
 
-      <div class="navLinks" aria-label="Sections">
-        <a href="#lanes">Funding Lanes</a>
-        <a href="#process">How It Works</a>
-        <a href="#checklist">Submission Checklist</a>
-        <a href="#disclaimer">Disclaimers</a>
-      </div>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="geo-decoration geo-1"></div>
+        <div class="geo-decoration geo-2"></div>
+        <div class="geo-decoration geo-3"></div>
+        
+        <div class="hero-content">
+            <div class="hero-eyebrow">
+                <span>Institutional Capital Placement</span>
+            </div>
+            
+            <h1 class="hero-title">
+                Tokenized Funding<br>for <em>Qualified</em> Assets
+            </h1>
+            
+            <p class="hero-subtitle">
+                Transform your assets, business, or revenue-generating projects into investor-ready 
+                digital representations. Access 2,400+ institutional partners with typical closes 
+                in 35-50 days.
+            </p>
+            
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-value">2,400+</div>
+                    <div class="stat-label">Funding Partners</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">$5M+</div>
+                    <div class="stat-label">Minimum Facility</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">50%+</div>
+                    <div class="stat-label">Leverage Target</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">35-50</div>
+                    <div class="stat-label">Days to Close</div>
+                </div>
+            </div>
+            
+            <div class="hero-actions">
+                <a href="#tokenization" class="btn-primary">Explore Tokenization</a>
+                <a href="tel:+15855009643" class="btn-outline">Schedule a Call</a>
+            </div>
+        </div>
+    </section>
 
-      <div class="navActions">
-        <button class="btn" id="resetBtn" title="Show all lanes">Show all</button>
-        <button class="btn" id="themeBtn" title="Toggle light/dark">Toggle theme</button>
-      </div>
+    <!-- Main Content -->
+    <div class="main-container">
+        
+        <!-- Tokenization Section -->
+        <section id="tokenization">
+            <div class="section-header">
+                <div class="section-number">01</div>
+                <div class="section-title-group">
+                    <h2>Tokenization for Funding</h2>
+                    <p>Our fastest and most versatile capital solution</p>
+                </div>
+            </div>
+            
+            <div class="token-section">
+                <div class="token-header">
+                    <div class="token-badge">35-50 Day Close</div>
+                    <h3>How Tokenization Works</h3>
+                    <p>
+                        Tokenization converts qualified assets, businesses, or projects into structured digital 
+                        representations. This enables funding partners to validate information, assess risk, and 
+                        move from underwriting to funding with fewer bottlenecks.
+                    </p>
+                </div>
+                
+                <div class="timeline">
+                    <div class="timeline-step">
+                        <div class="timeline-icon">01</div>
+                        <div class="timeline-title">Verify</div>
+                        <div class="timeline-desc">Valuation, title, financials, and deal file</div>
+                    </div>
+                    <div class="timeline-step">
+                        <div class="timeline-icon">02</div>
+                        <div class="timeline-title">Structure</div>
+                        <div class="timeline-desc">Token model + governance for investor readiness</div>
+                    </div>
+                    <div class="timeline-step">
+                        <div class="timeline-icon">03</div>
+                        <div class="timeline-title">Place Capital</div>
+                        <div class="timeline-desc">Underwriting across 2,400+ partner network</div>
+                    </div>
+                    <div class="timeline-step">
+                        <div class="timeline-icon">04</div>
+                        <div class="timeline-title">Fund</div>
+                        <div class="timeline-desc">Docs executed and capital disbursed</div>
+                    </div>
+                </div>
+                
+                <div class="fee-grid">
+                    <div class="fee-card">
+                        <div class="fee-amount">$250,000</div>
+                        <div class="fee-timing">Due Upfront</div>
+                        <div class="fee-desc">
+                            Covers initial token build-out, smart contract development, legal structuring, 
+                            and SEC filing preparation.
+                        </div>
+                    </div>
+                    <div class="fee-card">
+                        <div class="fee-amount">$250,000</div>
+                        <div class="fee-timing">Upon SEC Acceptance</div>
+                        <div class="fee-desc">
+                            Covers final compliance work, audit readiness, and supporting technical/legal documentation.
+                        </div>
+                    </div>
+                    <div class="refund-notice">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2D5A4A" stroke-width="2">
+                            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                            <polyline points="22 4 12 14.01 9 11.01"/>
+                        </svg>
+                        <p><strong>Refundable:</strong> If we are unable to successfully fund your deal, the tokenization fees are refundable per the terms of our agreement.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Programs Section -->
+        <section id="programs">
+            <div class="section-header">
+                <div class="section-number">02</div>
+                <div class="section-title-group">
+                    <h2>Funding Programs</h2>
+                    <p>60+ funding products through our 3,000+ partner network</p>
+                </div>
+            </div>
+            
+            <div class="products-nav">
+                <button class="nav-pill active" data-tab="tokenization-programs">Tokenization ($5M+)</button>
+                <button class="nav-pill" data-tab="early-stage">Early-Stage</button>
+                <button class="nav-pill" data-tab="growth">Growth Capital</button>
+                <button class="nav-pill" data-tab="working-capital">Working Capital</button>
+                <button class="nav-pill" data-tab="real-estate">Real Estate</button>
+                <button class="nav-pill" data-tab="specialty">Specialty</button>
+                <button class="nav-pill" data-tab="government">Government</button>
+            </div>
+            
+            <!-- Tokenization Programs -->
+            <div id="tokenization-programs" class="tab-section active">
+                <div class="products-grid">
+                    <div class="product-card">
+                        <span class="product-number">01</span>
+                        <h4>Asset-Based Lending (ABL)</h4>
+                        <ul>
+                            <li>Capital secured by verifiable assets</li>
+                            <li>Real estate, land, high-value tangibles</li>
+                            <li>Underwriting driven by collateral quality</li>
+                            <li>Can be combined with other structures</li>
+                        </ul>
+                        <div class="product-amount">$5M — $500M+</div>
+                    </div>
+                    
+                    <div class="product-card">
+                        <span class="product-number">02</span>
+                        <h4>Business-Based Funding (BBF)</h4>
+                        <ul>
+                            <li>Growth capital anchored to performance</li>
+                            <li>Contracts/receivables supported (EPC, off-take)</li>
+                            <li>Requires recent financials</li>
+                            <li>Complements ABL in blended structures</li>
+                        </ul>
+                        <div class="product-amount">$5M — $200M</div>
+                    </div>
+                    
+                    <div class="product-card">
+                        <span class="product-number">03</span>
+                        <h4>Project-Based Funding (PBF)</h4>
+                        <ul>
+                            <li>Revenue-generating projects</li>
+                            <li>Infrastructure, development, operations</li>
+                            <li>Focus on viability and cash flows</li>
+                            <li>Structured to match milestones</li>
+                        </ul>
+                        <div class="product-amount">$5M — $500M+</div>
+                    </div>
+                    
+                    <div class="product-card">
+                        <span class="product-number">04</span>
+                        <h4>Post-Funding Trade Program</h4>
+                        <ul>
+                            <li>Optional institutional trade platform</li>
+                            <li>Eligible profits service the facility</li>
+                            <li>Potential non-recourse outcome</li>
+                            <li>Available where elected and eligible</li>
+                        </ul>
+                        <div class="product-amount">Program Dependent</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Early-Stage -->
+            <div id="early-stage" class="tab-section">
+                <div class="products-grid">
+                    <div class="product-card">
+                        <span class="product-number">05</span>
+                        <h4>Angel Syndicate Network</h4>
+                        <ul>
+                            <li>200+ active angel investors</li>
+                            <li>Deal-by-deal SPV structures</li>
+                            <li>Pre-seed and seed rounds</li>
+                            <li>Tech, healthcare, consumer, clean energy</li>
+                        </ul>
+                        <div class="product-amount">$250K — $5M</div>
+                    </div>
+                    
+                    <div class="product-card">
+                        <span class="product-number">06</span>
+                        <h4>Micro-VC Fund of Funds</h4>
+                        <ul>
+                            <li>Access to emerging micro-VCs</li>
+                            <li>Co-investment rights</li>
+                            <li>20-30 startup portfolio diversification</li>
+                            <li>$10M - $50M fund sizes</li>
+                        </ul>
+                        <div class="product-amount">$500K — $2M</div>
+                    </div>
+                    
+                    <div class="product-card">
+                        <span class="product-number">07</span>
+                        <h4>Revenue-Based Financing</h4>
+                        <ul>
+                            <li>Non-dilutive for bootstrapped startups</li>
+                            <li>2-8% of monthly revenue</li>
+                            <li>1.3-2.0x repayment cap</li>
+                            <li>No board seats required</li>
+                        </ul>
+                        <div class="product-amount">$100K — $5M</div>
+                    </div>
+                    
+                    <div class="product-card">
+                        <span class="product-number">08</span>
+                        <h4>Venture Debt</h4>
+                        <ul>
+                            <li>Complement to equity rounds</li>
+                            <li>Extend runway 6-18 months</li>
+                            <li>Minimal dilution (warrant coverage)</li>
+                            <li>Post Series A/B companies</li>
+                        </ul>
+                        <div class="product-amount">$1M — $50M</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Growth Capital -->
+            <div id="growth" class="tab-section">
+                <div class="products-grid">
+                    <div class="product-card">
+                        <span class="product-number">09</span>
+                        <h4>Lower Middle Market PE</h4>
+                        <ul>
+                            <li>EBITDA $2M - $15M companies</li>
+                            <li>Control or minority positions</li>
+                            <li>Platform and add-on acquisitions</li>
+                            <li>Manufacturing, services, distribution</li>
+                        </ul>
+                        <div class="product-amount">$10M — $100M</div>
+                    </div>
+                    
+                    <div class="product-card">
+                        <span class="product-number">10</span>
+                        <h4>Growth Equity</h4>
+                        <ul>
+                            <li>Minority positions preferred</li>
+                            <li>Profitable or near-profitable</li>
+                            <li>20%+ revenue growth</li>
+                            <li>Tech-enabled businesses</li>
+                        </ul>
+                        <div class="product-amount">$15M — $100M</div>
+                    </div>
+                    
+                    <div class="product-card">
+                        <span class="product-number">11</span>
+                        <h4>Mezzanine Financing</h4>
+                        <ul>
+                            <li>Subordinated debt with equity kickers</li>
+                            <li>Bridge to acquisition or IPO</li>
+                            <li>Higher yield for investors</li>
+                            <li>Flexible terms</li>
+                        </ul>
+                        <div class="product-amount">$10M — $100M</div>
+                    </div>
+                    
+                    <div class="product-card">
+                        <span class="product-number">12</span>
+                        <h4>Buyout Financing</h4>
+                        <ul>
+                            <li>Management buyouts (MBO)</li>
+                            <li>Leveraged buyouts (LBO)</li>
+                            <li>Succession planning exits</li>
+                            <li>Carve-outs from larger entities</li>
+                        </ul>
+                        <div class="product-amount">$25M — $500M</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Working Capital -->
+            <div id="working-capital" class="tab-section">
+                <div class="products-grid">
+                    <div class="product-card">
+                        <span class="product-number">13</span>
+                        <h4>Invoice Factoring</h4>
+                        <ul>
+                            <li>Up to 90% advance on invoices</li>
+                            <li>Same-day funding available</li>
+                            <li>No long-term contracts</li>
+                            <li>B2B invoices</li>
+                        </ul>
+                        <div class="product-amount">$50K — $10M</div>
+                    </div>
+                    
+                    <div class="product-card">
+                        <span class="product-number">14</span>
+                        <h4>Purchase Order Financing</h4>
+                        <ul>
+                            <li>Fund large customer orders</li>
+                            <li>Up to 100% of PO value</li>
+                            <li>Bridge production gaps</li>
+                            <li>Manufacturing & distribution</li>
+                        </ul>
+                        <div class="product-amount">$100K — $5M</div>
+                    </div>
+                    
+                    <div class="product-card">
+                        <span class="product-number">15</span>
+                        <h4>Asset-Based Lending</h4>
+                        <ul>
+                            <li>Secured by inventory & receivables</li>
+                            <li>Revolving credit lines</li>
+                            <li>Flexible borrowing base</li>
+                            <li>Traditional ABL structure</li>
+                        </ul>
+                        <div class="product-amount">$1M — $50M</div>
+                    </div>
+                    
+                    <div class="product-card">
+                        <span class="product-number">16</span>
+                        <h4>Supply Chain Finance</h4>
+                        <ul>
+                            <li>Supplier early payment programs</li>
+                            <li>Reverse factoring</li>
+                            <li>Working capital optimization</li>
+                            <li>Large enterprise programs</li>
+                        </ul>
+                        <div class="product-amount">$10M — $500M</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Real Estate -->
+            <div id="real-estate" class="tab-section">
+                <div class="products-grid">
+                    <div class="product-card">
+                        <span class="product-number">17</span>
+                        <h4>Bridge Loans</h4>
+                        <ul>
+                            <li>Quick close (7-21 days)</li>
+                            <li>Acquisition & repositioning</li>
+                            <li>Up to 75% LTV</li>
+                            <li>All property types</li>
+                        </ul>
+                        <div class="product-amount">$1M — $100M</div>
+                    </div>
+                    
+                    <div class="product-card">
+                        <span class="product-number">18</span>
+                        <h4>Construction Financing</h4>
+                        <ul>
+                            <li>Ground-up development</li>
+                            <li>Heavy rehab projects</li>
+                            <li>Interest reserves included</li>
+                            <li>Residential & commercial</li>
+                        </ul>
+                        <div class="product-amount">$5M — $150M</div>
+                    </div>
+                    
+                    <div class="product-card">
+                        <span class="product-number">19</span>
+                        <h4>Permanent Financing</h4>
+                        <ul>
+                            <li>CMBS & agency loans</li>
+                            <li>25-30 year amortization</li>
+                            <li>Competitive rates</li>
+                            <li>Stabilized assets</li>
+                        </ul>
+                        <div class="product-amount">$5M — $500M+</div>
+                    </div>
+                    
+                    <div class="product-card">
+                        <span class="product-number">20</span>
+                        <h4>Multifamily Financing</h4>
+                        <ul>
+                            <li>Fannie Mae & Freddie Mac</li>
+                            <li>Workforce housing</li>
+                            <li>Student housing</li>
+                            <li>Agency execution</li>
+                        </ul>
+                        <div class="product-amount">$3M — $200M</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Specialty -->
+            <div id="specialty" class="tab-section">
+                <div class="products-grid">
+                    <div class="product-card">
+                        <span class="product-number">21</span>
+                        <h4>Equipment Leasing</h4>
+                        <ul>
+                            <li>Heavy machinery & vehicles</li>
+                            <li>Medical equipment</li>
+                            <li>Technology assets</li>
+                            <li>Flexible terms</li>
+                        </ul>
+                        <div class="product-amount">$500K — $50M</div>
+                    </div>
+                    
+                    <div class="product-card">
+                        <span class="product-number">22</span>
+                        <h4>Healthcare Financing</h4>
+                        <ul>
+                            <li>Medical practices</li>
+                            <li>Ambulatory surgery centers</li>
+                            <li>Senior care facilities</li>
+                            <li>Healthcare real estate</li>
+                        </ul>
+                        <div class="product-amount">$5M — $100M</div>
+                    </div>
+                    
+                    <div class="product-card">
+                        <span class="product-number">23</span>
+                        <h4>Media & Entertainment</h4>
+                        <ul>
+                            <li>Film & TV production</li>
+                            <li>Music catalog acquisition</li>
+                            <li>Gaming & esports</li>
+                            <li>Content monetization</li>
+                        </ul>
+                        <div class="product-amount">$5M — $200M</div>
+                    </div>
+                    
+                    <div class="product-card">
+                        <span class="product-number">24</span>
+                        <h4>Royalty & IP Monetization</h4>
+                        <ul>
+                            <li>Patent portfolios</li>
+                            <li>Music & content royalties</li>
+                            <li>Pharmaceutical royalties</li>
+                            <li>Brand licensing</li>
+                        </ul>
+                        <div class="product-amount">$10M — $500M</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Government -->
+            <div id="government" class="tab-section">
+                <div class="products-grid">
+                    <div class="product-card">
+                        <span class="product-number">25</span>
+                        <h4>SBA 7(a) Loans</h4>
+                        <ul>
+                            <li>Working capital & expansion</li>
+                            <li>Up to $5M per borrower</li>
+                            <li>Long-term amortization</li>
+                            <li>Government guaranteed</li>
+                        </ul>
+                        <div class="product-amount">$500K — $5M</div>
+                    </div>
+                    
+                    <div class="product-card">
+                        <span class="product-number">26</span>
+                        <h4>SBA 504 Loans</h4>
+                        <ul>
+                            <li>Real estate & equipment</li>
+                            <li>Below-market rates</li>
+                            <li>10-20% down payment</li>
+                            <li>Fixed assets focus</li>
+                        </ul>
+                        <div class="product-amount">$500K — $20M</div>
+                    </div>
+                    
+                    <div class="product-card">
+                        <span class="product-number">27</span>
+                        <h4>State & Local Incentives</h4>
+                        <ul>
+                            <li>Tax increment financing</li>
+                            <li>Opportunity zone investments</li>
+                            <li>Job creation incentives</li>
+                            <li>Economic development programs</li>
+                        </ul>
+                        <div class="product-amount">$1M — $100M</div>
+                    </div>
+                    
+                    <div class="product-card">
+                        <span class="product-number">28</span>
+                        <h4>Federal R&D Programs</h4>
+                        <ul>
+                            <li>SBIR/STTR grants</li>
+                            <li>DOE & DOD contracts</li>
+                            <li>NIH research funding</li>
+                            <li>Non-dilutive capital</li>
+                        </ul>
+                        <div class="product-amount">$100K — $10M</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Intake Requirements -->
+        <section id="requirements">
+            <div class="section-header">
+                <div class="section-number">03</div>
+                <div class="section-title-group">
+                    <h2>What We Need</h2>
+                    <p>Documentation required to begin the funding process</p>
+                </div>
+            </div>
+            
+            <div class="intake-section">
+                <div class="intake-grid">
+                    <div class="intake-block">
+                        <h4>1) Quick Fit</h4>
+                        <ul>
+                            <li>Funding amount (minimum $5M+)</li>
+                            <li>Deal type: asset-backed, business-backed, or project</li>
+                            <li>Jurisdiction (country/state)</li>
+                            <li>For projects: ARV + current stage</li>
+                            <li>For assets/business: verified value, revenue/cash flow</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="intake-block">
+                        <h4>2) Capital Stack & Terms</h4>
+                        <ul>
+                            <li>Equity/cash invested to date</li>
+                            <li>Participation offered (equity/profit share/revenue share)</li>
+                            <li>Existing debt (lenders, balances, seniority)</li>
+                            <li>Liability structure: recourse / limited / non-recourse</li>
+                            <li>Ability to cover early carry costs</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="intake-block">
+                        <h4>3) Project Package</h4>
+                        <ul>
+                            <li>Sources & uses: total budget, draw schedule</li>
+                            <li>Permits/approvals status</li>
+                            <li>Key counterparties (developer, GC, architect)</li>
+                            <li>Pre-sales/pre-leases + evidence of demand</li>
+                            <li>Exit plan (sale or refinance) + timeline</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="intake-block">
+                        <h4>4) Initial Documents</h4>
+                        <ul>
+                            <li>Valuation/appraisal OR financial statements</li>
+                            <li>Projects: ARV package + pitch deck/pro forma</li>
+                            <li>Proof of ownership/title documentation</li>
+                            <li>Borrower/entity details for compliance review</li>
+                            <li>KYC/AML required prior to onboarding</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
     </div>
-  </div>
 
-  <div class="wrap">
-
-    <!-- HERO -->
-    <div class="hero">
-      <div class="panel">
-        <div class="panelInner">
-          <div class="heroKicker">
-            <span class="pill">For clients who want funding — with or without tokenization</span>
-            <span class="pill">Tokenization: <b>$250k start</b> • <b>35–50 days close</b></span>
-          </div>
-
-          <h1>One menu.<br/>Multiple funding pathways.</h1>
-          <p class="sub">
-            KA Global supports clients across <b>startup equity</b>, <b>private credit</b>, <b>real estate</b>, <b>land</b>,
-            <b>project finance</b>, <b>U.S. federal pathways</b>, and <b>asset monetization</b>.
-            When tokenization fits, it can be used as a premium acceleration lane.
-          </p>
-
-          <div class="heroRow">
-            <button class="btn primary" onclick="document.querySelector('#lanes').scrollIntoView({behavior:'smooth'})">
-              View funding lanes
-            </button>
-            <span class="pill">Built for mixed audiences: founders • developers • landowners • asset holders</span>
-          </div>
-
-          <div class="ctaRow">
-            <span class="mutedSmall">Tip: Use the lane finder below to route yourself in under 10 seconds.</span>
-          </div>
+    <!-- Disclaimers -->
+    <section class="disclaimer-section">
+        <div class="disclaimer-header">
+            <h3>Important Disclosures</h3>
+            <p style="color: var(--silver); max-width: 600px; margin: 0 auto;">
+                Please review the following legal notices before engaging with our services.
+            </p>
         </div>
-      </div>
-
-      <div class="panel">
-        <div class="stats">
-          <div class="stat">
-            <b>18 years</b>
-            <span>Operating history referenced by the funding partner ecosystem we work with.</span>
-          </div>
-          <div class="stat">
-            <b>500+ sources</b>
-            <span>Funding sources referenced: institutional + private markets network.</span>
-          </div>
-          <div class="stat">
-            <b>$10M+ lanes</b>
-            <span>Real estate construction lane starts at $10M+ submissions.</span>
-          </div>
-          <div class="stat">
-            <b>$5M+ land</b>
-            <span>Land lane is designed for land value above $5M.</span>
-          </div>
+        
+        <div class="disclaimer-grid">
+            <div class="disclaimer-card">
+                <h4>Regulatory Status</h4>
+                <p>
+                    KA Global LLC is not a securities broker-dealer, investment adviser, or registered with the SEC. 
+                    We operate as a capital placement firm facilitating introductions between clients and our funding partners.
+                </p>
+            </div>
+            
+            <div class="disclaimer-card">
+                <h4>Funding Process</h4>
+                <p>
+                    Final funding decisions are made by partner lenders and investors based on their underwriting criteria. 
+                    Tokenization fees are refundable if we are unable to successfully fund your deal per agreement terms.
+                </p>
+            </div>
+            
+            <div class="disclaimer-card">
+                <h4>Risk Disclosure</h4>
+                <p>
+                    All funding arrangements involve risk. Carefully evaluate terms, conditions, interest rates, and 
+                    repayment obligations before entering any agreement. Consult your own legal and financial advisers.
+                </p>
+            </div>
+            
+            <div class="disclaimer-card">
+                <h4>Compliance</h4>
+                <p>
+                    All clients must complete KYC/AML verification and provide source of funds documentation. 
+                    We reserve the right to decline engagements that do not meet our compliance standards.
+                </p>
+            </div>
         </div>
-      </div>
-    </div>
-
-    <!-- LANES BLOCK -->
-    <section class="sectionBlock" id="lanes">
-      <div class="sectionHead">
-        <div>
-          <h2>Quick Lane Finder</h2>
-          <div class="hint">Search + tap a category to filter. This page is safe to share with any client type.</div>
-        </div>
-        <div class="hint">Showing: <span id="countTxt">All lanes</span></div>
-      </div>
-
-      <div class="sectionBody">
-        <div class="router">
-          <div class="search" role="search" aria-label="Search lanes">
-            <span style="opacity:.85">⌕</span>
-            <input id="searchInput" type="text" placeholder="Search: angel, VC, land, 90% LTC, grants, non-recourse, gold..." />
-          </div>
-
-          <div class="filters" aria-label="Categories">
-            <div class="chip active" data-filter="all">All</div>
-            <div class="chip" data-filter="startup">Startup / Angel / VC</div>
-            <div class="chip" data-filter="business">Operating Business</div>
-            <div class="chip" data-filter="realestate">Real Estate</div>
-            <div class="chip" data-filter="land">Land</div>
-            <div class="chip" data-filter="projects">Large Projects</div>
-            <div class="chip" data-filter="federal">U.S. Federal</div>
-            <div class="chip" data-filter="assets">Hard Assets</div>
-            <div class="chip" data-filter="special">Special Situations</div>
-            <div class="chip" data-filter="tokenization">Tokenization</div>
-          </div>
-        </div>
-
-        <div style="height:14px"></div>
-
-        <div class="grid" id="laneGrid">
-
-          <article class="card full lane" data-tags="tokenization startup business realestate land projects">
-            <div class="cardInner">
-              <div class="topline">
-                <span class="badge"><strong>Premium lane</strong> • Accelerated readiness</span>
-                <span class="tag">Tokenization</span>
-              </div>
-              <h3>Tokenization for Funding Acceleration</h3>
-              <p>
-                For qualified clients seeking a premium posture: tokenize a qualified asset, business, or project as a structured digital
-                representation to improve verification, governance, and review speed.
-              </p>
-              <ul class="list">
-                <li><span class="dot"></span>Pricing: <b>$250,000</b> to start</li>
-                <li><span class="dot"></span>Timeline: <b>35–50 days</b> to close (typical target window)</li>
-                <li><span class="dot"></span>Best for: larger raises, higher scrutiny, and faster diligence cycles</li>
-              </ul>
-              <div class="ctaRow">
-                <span class="mutedSmall">If tokenization isn’t a fit, use any lane below — most clients start there.</span>
-              </div>
-            </div>
-          </article>
-
-          <article class="card lane" data-tags="startup angel vc venture equity">
-            <div class="cardInner">
-              <div class="topline">
-                <span class="badge"><strong>Equity lane</strong> • Early-stage</span>
-                <span class="tag">Startup / Angel / VC</span>
-              </div>
-              <h3>Angel / VC / Early Equity Placement</h3>
-              <p>For founders raising equity: we refine the narrative, package the raise, and route to appropriate private investor channels.</p>
-              <ul class="list">
-                <li><span class="dot"></span>Best for: scalable startups, high-growth models, innovation-focused teams</li>
-                <li><span class="dot"></span>What we build: pitch + use-of-proceeds clarity + diligence-ready package</li>
-                <li><span class="dot"></span>What you need: team background, traction, plan, cap table, equity expectations</li>
-              </ul>
-            </div>
-          </article>
-
-          <article class="card lane" data-tags="business revenue working capital private credit growth acquisition">
-            <div class="cardInner">
-              <div class="topline">
-                <span class="badge"><strong>Business lane</strong> • Revenue-backed</span>
-                <span class="tag">Operating Business</span>
-              </div>
-              <h3>Growth Capital for Operating Companies</h3>
-              <p>For revenue businesses seeking expansion, optimization, or acquisitions — matched to private credit and/or equity pathways.</p>
-              <ul class="list">
-                <li><span class="dot"></span>Structures: private credit, structured debt, growth equity, PE (fit dependent)</li>
-                <li><span class="dot"></span>What you need: financials, bank history, debt schedule, contracts (if relevant)</li>
-                <li><span class="dot"></span>Outcome: indications/term sheets after underwriting + diligence</li>
-              </ul>
-            </div>
-          </article>
-
-          <article class="card lane" data-tags="realestate construction non-recourse 90% ltc 10m">
-            <div class="cardInner">
-              <div class="topline">
-                <span class="badge"><strong>Real estate</strong> • $10M+ submissions</span>
-                <span class="tag">Real Estate</span>
-              </div>
-              <h3>Real Estate Construction Funding</h3>
-              <p>For large development projects seeking construction finance and structured capital stacks.</p>
-              <ul class="list">
-                <li><span class="dot"></span>Guideline: up to <b>90% LTC</b> and <b>non-recourse</b> (qualification dependent)</li>
-                <li><span class="dot"></span>Minimum submissions: <b>$10M+</b></li>
-                <li><span class="dot"></span>Verification: site visit + third‑party review of budget/draws/permits/environmental</li>
-                <li><span class="dot"></span>Typical equity guidance: ~10% already in + 10% new skin (program dependent)</li>
-              </ul>
-            </div>
-          </article>
-
-          <article class="card lane" data-tags="land 5m valuation tranche 2-3 months">
-            <div class="cardInner">
-              <div class="topline">
-                <span class="badge"><strong>Land</strong> • $5M+ land value</span>
-                <span class="tag">Land</span>
-              </div>
-              <h3>Land Funding / Land Monetization</h3>
-              <p>For landowners seeking capital against valuable land positions and structured funding sequences.</p>
-              <ul class="list">
-                <li><span class="dot"></span>Minimum: land value <b>$5M+</b></li>
-                <li><span class="dot"></span>Intake items: Loan App 1003, passport, use of proceeds, photos, valuation</li>
-                <li><span class="dot"></span>Structure: milestone/tranche sequence; typical ramp described as <b>2–3 months</b></li>
-              </ul>
-            </div>
-          </article>
-
-          <article class="card lane" data-tags="projects infrastructure energy ppp non-recourse project finance">
-            <div class="cardInner">
-              <div class="topline">
-                <span class="badge"><strong>Project finance</strong> • Large developments</span>
-                <span class="tag">Large Projects</span>
-              </div>
-              <h3>International Project Finance &amp; Non‑Recourse Structures</h3>
-              <p>For large-scale commercial/industrial developments backed by valuable assets, including PPP-style frameworks.</p>
-              <ul class="list">
-                <li><span class="dot"></span>Structures: loan-based + non-recourse options (project dependent)</li>
-                <li><span class="dot"></span>Repayment emphasis: primarily project cash flow (where applicable)</li>
-                <li><span class="dot"></span>Often requires: feasibility, approvals, offtake/contracts (if relevant), sponsor strength</li>
-              </ul>
-            </div>
-          </article>
-
-          <article class="card lane" data-tags="federal grants contracts appropriations lobby no debt us">
-            <div class="cardInner">
-              <div class="topline">
-                <span class="badge"><strong>Non‑dilutive</strong> • U.S. pathways</span>
-                <span class="tag">U.S. Federal</span>
-              </div>
-              <h3>Federal Funding Pathways (Grants / Contracts / Appropriations)</h3>
-              <p>For eligible U.S. businesses/projects seeking non-dilutive or low-interest capital pathways.</p>
-              <ul class="list">
-                <li><span class="dot"></span>Channels: appropriations, competitive grants, government contracts, low-interest loans</li>
-                <li><span class="dot"></span>Focus sectors: clean/green energy, cybersecurity, transportation, healthcare &amp; health IT</li>
-                <li><span class="dot"></span>Client commitment terms may apply (disclosed prior to engagement)</li>
-              </ul>
-            </div>
-          </article>
-
-          <article class="card lane" data-tags="assets gold gems artwork bonds monetization liquidity">
-            <div class="cardInner">
-              <div class="topline">
-                <span class="badge"><strong>Asset lane</strong> • Liquidity</span>
-                <span class="tag">Hard Assets</span>
-              </div>
-              <h3>Hard Asset Monetization (Verified Ownership Only)</h3>
-              <p>For clients with verifiable ownership of valuable assets who need liquidity or structured capital.</p>
-              <ul class="list">
-                <li><span class="dot"></span>Examples: gems, artwork, gold, bonds (and other eligible hard assets)</li>
-                <li><span class="dot"></span>Requirements: proof of ownership, valuation, custody/location, compliance review</li>
-                <li><span class="dot"></span>We do not proceed without documentation and verification</li>
-              </ul>
-            </div>
-          </article>
-
-          <article class="card lane" data-tags="special 100% 100+ startup no collateral">
-            <div class="cardInner">
-              <div class="topline">
-                <span class="badge"><strong>Special situations</strong> • Case-by-case</span>
-                <span class="tag">Special</span>
-              </div>
-              <h3>High‑Leverage / 100% Funding Consideration</h3>
-              <p>For clients seeking unusually high leverage. Eligibility is strict and depends on underwriting, documentation, and deal strength.</p>
-              <ul class="list">
-                <li><span class="dot"></span>Case-by-case consideration may include 100% funding scenarios</li>
-                <li><span class="dot"></span>Some construction cases may target 100+% structures (program dependent)</li>
-                <li><span class="dot"></span>Expect deeper verification and longer diligence</li>
-              </ul>
-            </div>
-          </article>
-
-        </div>
-      </div>
     </section>
 
-    <!-- PROCESS -->
-    <section class="sectionBlock" id="process">
-      <div class="sectionHead">
-        <div>
-          <h2>How KA Global Works</h2>
-          <div class="hint">A clean, repeatable process that routes clients to the right lane early.</div>
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="cta-content">
+            <h2>Ready to <em>Begin?</em></h2>
+            <p style="color: var(--silver); font-size: 1.1rem;">
+                Schedule an intake call to discuss your project and explore the best funding options.
+            </p>
+            
+            <div class="contact-card">
+                <div class="contact-name">Andrey Fedorishin</div>
+                <div class="contact-details">
+                    <a href="mailto:andrey@kaglobal.io">andrey@kaglobal.io</a>
+                    <a href="tel:+15855009643">585-500-9643</a>
+                </div>
+            </div>
+            
+            <div class="cta-buttons">
+                <a href="tel:+15855009643" class="btn-primary">Schedule a Call</a>
+                <a href="mailto:andrey@kaglobal.io?subject=Funding Inquiry" class="btn-outline">Send an Email</a>
+            </div>
         </div>
-      </div>
-      <div class="sectionBody">
-        <div class="twoCol">
-          <div class="timeline">
-            <div class="step">
-              <div class="num">1</div>
-              <div><b>Pre‑Qualification</b><span>Confirm the best lane and identify missing documents before submission.</span></div>
-            </div>
-            <div class="step">
-              <div class="num">2</div>
-              <div><b>Packaging &amp; Data Room Readiness</b><span>Build a lender/investor‑ready package: narrative, sources &amp; uses, feasibility, support files.</span></div>
-            </div>
-            <div class="step">
-              <div class="num">3</div>
-              <div><b>Placement &amp; Term Sheet Path</b><span>Submit into the right channel and manage follow‑ups through indications/term sheets/offers.</span></div>
-            </div>
-            <div class="step">
-              <div class="num">4</div>
-              <div><b>Diligence → Close</b><span>Verification, underwriting, legal documentation, and funding execution. Timelines vary by lane.</span></div>
-            </div>
-          </div>
-
-          <div class="timeline">
-            <div class="step">
-              <div class="num">✓</div>
-              <div><b>Best Practices to Move Faster</b><span>Clear use of proceeds • consistent documents • verifiable ownership • third‑party reports when required.</span></div>
-            </div>
-            <div class="step">
-              <div class="num">⏱</div>
-              <div><b>Timing Notes</b><span>Land often ramps over 2–3 months; tokenization targets 35–50 days; federal lanes can be longer-cycle.</span></div>
-            </div>
-            <div class="step">
-              <div class="num">$</div>
-              <div><b>Fees (High-level)</b><span>Consulting/packaging fee + success-based fees at close (fully disclosed per lane).</span></div>
-            </div>
-            <div class="step">
-              <div class="num">🔒</div>
-              <div><b>Verification &amp; Compliance</b><span>KYC/AML readiness, proof of ownership, valuations, and other diligence may be required.</span></div>
-            </div>
-          </div>
-        </div>
-      </div>
     </section>
 
-    <!-- CHECKLIST -->
-    <section class="sectionBlock" id="checklist">
-      <div class="sectionHead">
-        <div>
-          <h2>Minimum Submission Checklist</h2>
-          <div class="hint">Bring this ready, and we move faster.</div>
-        </div>
-      </div>
-      <div class="sectionBody">
-        <div class="card full">
-          <div class="cardInner">
-            <div class="topline">
-              <span class="badge"><strong>Universal</strong> • All lanes</span>
-              <span class="tag">Checklist</span>
-            </div>
-            <h3>What we need from every client</h3>
-            <ul class="list">
-              <li><span class="dot"></span><b>Amount requested</b> + exact <b>use of proceeds</b></li>
-              <li><span class="dot"></span><b>Entity structure</b> + owners/sponsors and relevant experience</li>
-              <li><span class="dot"></span><b>Business plan / feasibility</b> (as applicable) and supporting documents</li>
-              <li><span class="dot"></span><b>Financials</b> (historical where available) and/or credible projections</li>
-              <li><span class="dot"></span><b>Collateral / assets</b> (if any): proof of ownership + valuation</li>
-            </ul>
-            <div class="ctaRow">
-              <span class="mutedSmall">Real estate and land lanes may require additional documents (permits, budgets, draw schedules, environmental, valuations).</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2025 KA Global LLC. All rights reserved. All programs subject to change.</p>
+    </footer>
 
-    <!-- DISCLAIMER -->
-    <section class="sectionBlock" id="disclaimer">
-      <div class="sectionHead">
-        <div>
-          <h2>Disclaimers &amp; Important Notes</h2>
-          <div class="hint">Use this footer in every share.</div>
-        </div>
-      </div>
-      <div class="sectionBody">
-        <div class="foot">
-          <h4>Not a broker/dealer • Not investment advice</h4>
-          <p>
-            KA Global LLC is not registered as a broker-dealer or securities dealer, and does not provide investment advice as an
-            investment adviser. KA Global does not solicit or sell securities. Information on this page is for informational and
-            consulting purposes only.
-          </p>
-          <p class="fineprint">
-            Funding is not guaranteed. All transactions are subject to underwriting, eligibility, third‑party approvals, legal documentation,
-            compliance checks, and program terms that may change. Clients must provide accurate information and verifiable documentation.
-            Any fees, points, third‑party costs, or program terms will be disclosed in writing prior to engagement.
-          </p>
-        </div>
-      </div>
-    </section>
+    <script>
+        // Tab Navigation
+        document.querySelectorAll('.nav-pill').forEach(pill => {
+            pill.addEventListener('click', function() {
+                // Remove active from all pills
+                document.querySelectorAll('.nav-pill').forEach(p => p.classList.remove('active'));
+                // Add active to clicked pill
+                this.classList.add('active');
+                
+                // Hide all tab sections
+                document.querySelectorAll('.tab-section').forEach(section => section.classList.remove('active'));
+                
+                // Show selected tab section
+                const tabId = this.getAttribute('data-tab');
+                document.getElementById(tabId).classList.add('active');
+            });
+        });
 
-  </div>
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
 
-  <script>
-    (function(){
-      const stored = localStorage.getItem("kaglobal_theme");
-      if(stored){ document.documentElement.setAttribute("data-theme", stored); }
-      document.getElementById("themeBtn").addEventListener("click", () => {
-        const current = document.documentElement.getAttribute("data-theme") || "dark";
-        const next = current === "dark" ? "light" : "dark";
-        document.documentElement.setAttribute("data-theme", next);
-        localStorage.setItem("kaglobal_theme", next);
-      });
-    })();
+        // Intersection Observer for fade-in animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
 
-    const chips = Array.from(document.querySelectorAll(".chip"));
-    const lanes = Array.from(document.querySelectorAll(".lane"));
-    const searchInput = document.getElementById("searchInput");
-    const countTxt = document.getElementById("countTxt");
-    const resetBtn = document.getElementById("resetBtn");
-    let activeFilter = "all";
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
 
-    function normalize(s){ return (s || "").toLowerCase().trim(); }
+        // Observe elements
+        document.querySelectorAll('.section-header, .token-section, .intake-section, .disclaimer-card').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+            observer.observe(el);
+        });
 
-    function matchesLane(lane, filter, q){
-      const tags = normalize(lane.getAttribute("data-tags"));
-      const text = normalize(lane.innerText);
-      const filterOk = (filter === "all") ? true : tags.includes(filter);
-      const qOk = (!q) ? true : (text.includes(q) || tags.includes(q));
-      return filterOk && qOk;
-    }
-
-    function update(){
-      const q = normalize(searchInput.value);
-      let shown = 0;
-      lanes.forEach(lane => {
-        const ok = matchesLane(lane, activeFilter, q);
-        lane.classList.toggle("hidden", !ok);
-        if(ok){ shown++; }
-      });
-      countTxt.textContent = (activeFilter === "all" && !normalize(searchInput.value))
-        ? "All lanes"
-        : `${shown} lane${shown===1?"":"s"} shown`;
-    }
-
-    chips.forEach(chip => {
-      chip.addEventListener("click", () => {
-        chips.forEach(c => c.classList.remove("active"));
-        chip.classList.add("active");
-        activeFilter = chip.getAttribute("data-filter");
-        update();
-      });
-    });
-
-    searchInput.addEventListener("input", update);
-
-    resetBtn.addEventListener("click", () => {
-      searchInput.value = "";
-      activeFilter = "all";
-      chips.forEach(c => c.classList.toggle("active", c.getAttribute("data-filter")==="all"));
-      update();
-      document.querySelector("#lanes").scrollIntoView({behavior:"smooth"});
-    });
-
-    update();
-  </script>
+        // Product card stagger animation
+        document.querySelectorAll('.product-card').forEach((card, index) => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(30px)';
+            card.style.transition = `opacity 0.6s ease ${index * 0.1}s, transform 0.6s ease ${index * 0.1}s`;
+            observer.observe(card);
+        });
+    </script>
 </body>
 </html>
