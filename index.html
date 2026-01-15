@@ -61,20 +61,20 @@
         }
 
         :root {
-            --obsidian: #0A0A0B;
-            --onyx: #121214;
-            --carbon: #1A1A1D;
-            --graphite: #2A2A2E;
-            --silver: #8A8A8F;
-            --platinum: #C4C4C8;
-            --ivory: #FAFAF9;
-            --gold: #D4AF37;
-            --gold-light: #E8C860;
-            --gold-dark: #B8960F;
-            --gold-muted: rgba(212, 175, 55, 0.15);
-            --emerald: #2D5A4A;
-            --accent: #FF6B35;
-        }
+        --obsidian: #0A0A0B;
+        --onyx: #121214;
+        --carbon: #1A1A1D;
+        --graphite: #2A2A2E;
+        --silver: #8A8A8F;
+        --platinum: #C4C4C8;
+        --ivory: #FAFAF9;
+        --gold: #D4AF37;
+        --gold-light: #E8C860;
+        --gold-dark: #B8960F;
+        --gold-muted: rgba(212, 175, 55, 0.15);
+        --emerald: #2D5A4A;
+        --accent: #D4AF37;
+    }
 
         html {
             scroll-behavior: smooth;
@@ -448,6 +448,134 @@
             font-size: 0.9rem;
             color: var(--silver);
         }
+
+        
+        /* Engagement Options */
+        .engagement-section {
+            background: linear-gradient(135deg, var(--onyx), var(--carbon));
+            border: 1px solid rgba(212, 175, 55, 0.12);
+            padding: 4rem;
+            margin-bottom: 4rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .engagement-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--gold), transparent);
+        }
+
+        .engagement-section::after {
+            content: '';
+            position: absolute;
+            inset: -40% -30%;
+            background: radial-gradient(circle at 20% 30%, rgba(212,175,55,0.16), transparent 55%);
+            transform: rotate(-10deg);
+            pointer-events: none;
+        }
+
+        .engagement-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin-top: 2.5rem;
+            position: relative;
+        }
+
+        @media (max-width: 980px) {
+            .engagement-section { padding: 2.25rem 1.5rem; }
+            .engagement-grid { grid-template-columns: 1fr; }
+        }
+
+        .engagement-card {
+            background: rgba(26,26,29,0.65);
+            border: 1px solid rgba(212, 175, 55, 0.12);
+            padding: 2rem;
+            position: relative;
+            transition: transform 0.25s ease, border-color 0.25s ease;
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+        }
+
+        .engagement-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(212, 175, 55, 0.38);
+        }
+
+        .engagement-kicker {
+            display: inline-block;
+            font-size: 0.7rem;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            color: var(--gold-light);
+            margin-bottom: 0.75rem;
+        }
+
+        .engagement-card h3 {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.35rem;
+            color: var(--ivory);
+            margin: 0 0 0.75rem 0;
+        }
+
+        .engagement-card p {
+            font-size: 0.95rem;
+            color: var(--silver);
+            line-height: 1.7;
+            margin: 0 0 1.25rem 0;
+        }
+
+        .engagement-list {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 1.5rem 0;
+            display: grid;
+            gap: 0.7rem;
+        }
+
+        .engagement-list li {
+            display: flex;
+            gap: 0.75rem;
+            color: var(--platinum);
+            font-size: 0.92rem;
+            line-height: 1.6;
+        }
+
+        .eng-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 3px;
+            background: linear-gradient(135deg, var(--gold), var(--gold-light));
+            transform: translateY(0.35rem);
+            flex: 0 0 auto;
+        }
+
+        .engagement-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.75rem;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--gold);
+            text-decoration: none;
+            border-bottom: 1px solid rgba(212,175,55,0.35);
+            padding-bottom: 0.25rem;
+            transition: color 0.25s ease, border-color 0.25s ease;
+            position: relative;
+            z-index: 1;
+        }
+
+        .engagement-cta:hover {
+            color: var(--gold-light);
+            border-color: rgba(232,200,96,0.55);
+        }
+
 
         /* Tokenization Flow */
         .token-section {
@@ -1033,17 +1161,278 @@
                 display: none;
             }
         }
+    
+        /* Skip Link */
+        .skip-link {
+            position: absolute;
+            top: -60px;
+            left: 12px;
+            padding: 0.9rem 1.2rem;
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.18);
+            color: var(--ivory);
+            text-decoration: none;
+            border-radius: 999px;
+            z-index: 2000;
+            transition: top 0.2s ease;
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+        }
+        .skip-link:focus { top: 12px; outline: none; border-color: var(--gold); }
+
+        section[id] { scroll-margin-top: 110px; }
+
+        /* Brand + Navigation (Enhanced) */
+        .nav {
+            background: rgba(10, 10, 11, 0.82);
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+        }
+
+        .brand {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.9rem;
+            text-decoration: none;
+            min-height: 44px;
+        }
+
+
+        .brand-text {
+            font-family: 'Syne', sans-serif;
+            font-weight: 800;
+            letter-spacing: 0.28em;
+            text-transform: uppercase;
+            font-size: 0.95rem;
+            color: var(--ivory);
+            line-height: 1;
+            padding: 0.35rem 0;
+        }
+
+        .brand-text span {
+            color: var(--gold);
+        }
+
+        .brand-logo {
+            height: 46px;
+            width: auto;
+            display: block;
+            filter: drop-shadow(0 10px 18px rgba(0,0,0,0.35));
+        }
+
+        .nav-desktop {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 1.35rem;
+        }
+
+        .nav-item {
+            font-size: 0.75rem;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--silver);
+            text-decoration: none;
+            transition: color 0.25s ease;
+            padding: 0.6rem 0.25rem;
+            border-radius: 10px;
+        }
+
+        .nav-item:hover { color: var(--gold); }
+        .nav-item:focus { outline: none; box-shadow: 0 0 0 3px rgba(212, 175, 55,0.22); color: var(--ivory); }
+
+        .nav-toggle {
+            display: none;
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.12);
+            color: var(--ivory);
+            cursor: pointer;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.2s ease, border-color 0.2s ease;
+        }
+
+        .nav-toggle:hover { transform: translateY(-1px); border-color: rgba(212, 175, 55,0.5); }
+
+        .nav-drawer {
+            position: fixed;
+            top: 0;
+            right: 0;
+            height: 100vh;
+            width: min(380px, 88vw);
+            background: rgba(10,10,11,0.92);
+            border-left: 1px solid rgba(255,255,255,0.08);
+            backdrop-filter: blur(22px);
+            -webkit-backdrop-filter: blur(22px);
+            transform: translateX(110%);
+            transition: transform 0.25s ease;
+            z-index: 1500;
+            display: flex;
+            flex-direction: column;
+            padding: 1.25rem 1.25rem 1.5rem;
+        }
+
+        .nav-drawer.open { transform: translateX(0); }
+
+        .drawer-head {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+            margin-bottom: 1rem;
+        }
+
+        .drawer-title {
+            font-family: 'Syne', sans-serif;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            color: var(--ivory);
+        }
+
+        .drawer-close {
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.12);
+            color: var(--ivory);
+            cursor: pointer;
+        }
+
+        .drawer-links {
+            display: grid;
+            gap: 0.35rem;
+            padding: 0.75rem 0;
+        }
+
+        .drawer-links a {
+            padding: 0.9rem 0.9rem;
+            border-radius: 14px;
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.06);
+            color: var(--platinum);
+            text-decoration: none;
+            font-size: 0.85rem;
+            transition: border-color 0.2s ease, transform 0.2s ease;
+        }
+
+        .drawer-links a:hover { border-color: rgba(212, 175, 55,0.45); transform: translateY(-1px); }
+
+        .drawer-contact {
+            margin-top: auto;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(255,255,255,0.06);
+            display: grid;
+            gap: 0.6rem;
+        }
+
+        .drawer-contact a {
+            color: var(--ivory);
+            text-decoration: none;
+            padding: 0.9rem 0.9rem;
+            border-radius: 14px;
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.06);
+        }
+
+        .drawer-contact a:hover { border-color: rgba(212, 175, 55,0.45); }
+
+        .nav-backdrop {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.55);
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.25s ease;
+            z-index: 1400;
+        }
+
+        .nav-backdrop.open {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        @media (max-width: 980px) {
+            .nav-desktop { display: none; }
+            .nav-toggle { display: inline-flex; }
+            .nav { padding: 1.1rem 1.25rem; }
+            .brand-logo {
+            height: 46px;
+            width: auto;
+            display: block;
+            filter: drop-shadow(0 10px 18px rgba(0,0,0,0.35));
+        }
+        }
+
     </style>
 </head>
 <body>
+    <a class="skip-link" href="#tokenization">Skip to content</a>
+    <div id="top"></div>
     <!-- Navigation -->
-    <nav class="nav">
-        <div class="logo">KA<span>.</span>GLOBAL</div>
-        <div class="nav-contact">
-            <a href="mailto:andrey@kaglobal.io" class="nav-link">andrey@kaglobal.io</a>
-            <a href="tel:+15855009643" class="nav-link">585-500-9643</a>
+    <nav class="nav" aria-label="Primary navigation">
+        <a class="brand" href="#top" aria-label="KA Global home">
+            <div class="brand-text">KA <span>GLOBAL</span></div>
+        </a>
+
+        <div class="nav-desktop">
+            <div class="nav-links">
+                <a class="nav-item" href="#engagement">Engagement</a>
+            <a class="nav-item" href="#tokenization">Tokenization</a>
+                <a class="nav-item" href="#programs">Programs</a>
+                <a class="nav-item" href="#requirements">Requirements</a>
+                <a class="nav-item" href="#disclosures">Disclosures</a>
+                <a class="nav-item" href="#contact">Contact</a>
+            </div>
+
+            <div class="nav-contact">
+                <a href="mailto:andrey@kaglobal.io" class="nav-link">andrey@kaglobal.io</a>
+                <a href="tel:+15855009643" class="nav-link">585-500-9643</a>
+            </div>
         </div>
+
+        <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-controls="navDrawer" aria-expanded="false">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <path d="M4 6h16M4 12h16M4 18h16"/>
+            </svg>
+        </button>
     </nav>
+
+    <div class="nav-backdrop" id="navBackdrop" aria-hidden="true"></div>
+
+    <aside class="nav-drawer" id="navDrawer" aria-hidden="true">
+        <div class="drawer-head">
+            <div class="drawer-title">Menu</div>
+            <button class="drawer-close" id="navClose" aria-label="Close menu">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                    <path d="M18 6 6 18M6 6l12 12"/>
+                </svg>
+            </button>
+        </div>
+
+        <nav class="drawer-links" aria-label="Mobile navigation">
+            <a href="#engagement">Engagement</a>
+            <a href="#tokenization">Tokenization</a>
+            <a href="#programs">Programs</a>
+            <a href="#requirements">Requirements</a>
+            <a href="#disclosures">Disclosures</a>
+            <a href="#contact">Contact</a>
+        </nav>
+
+        <div class="drawer-contact" aria-label="Contact">
+            <a href="mailto:andrey@kaglobal.io">andrey@kaglobal.io</a>
+            <a href="tel:+15855009643">585-500-9643</a>
+        </div>
+    </aside>
 
     <!-- Hero Section -->
     <section class="hero">
@@ -1096,7 +1485,48 @@
     <div class="main-container">
         
         <!-- Tokenization Section -->
-        <section id="tokenization">
+        
+    <!-- Engagement Options -->
+    <section class="engagement-section" id="engagement" aria-labelledby="engagementTitle">
+        <div class="section-title-group">
+            <h2 id="engagementTitle">Engagement Options</h2>
+            <p>Two ways we work — premium tokenization, or consulting-based placement for everything else on the menu.</p>
+        </div>
+
+        <div class="engagement-grid">
+            <div class="engagement-card">
+                <div class="engagement-kicker">Premium</div>
+                <h3>Tokenization (Funding Acceleration)</h3>
+                <p>
+                    Ideal when a client qualifies for a premium, diligence-forward approach. We structure and tokenize a qualified asset,
+                    business, or project to improve verification, governance, and review speed.
+                </p>
+                <ul class="engagement-list">
+                    <li><span class="eng-dot"></span><b>$250,000</b> to start</li>
+                    <li><span class="eng-dot"></span><b>35–50 days</b> close target window</li>
+                    <li><span class="eng-dot"></span>Best for larger raises + higher scrutiny</li>
+                </ul>
+                <a class="engagement-cta" href="#tokenization">View tokenization flow →</a>
+            </div>
+
+            <div class="engagement-card">
+                <div class="engagement-kicker">Most common</div>
+                <h3>Consulting + Placement (Non‑Tokenization)</h3>
+                <p>
+                    If tokenization is not the fit, KA Global engages on a consulting basis to identify the best match across the full menu
+                    (angel/VC, private credit, real estate, land, project finance, federal pathways, and eligible asset monetization).
+                </p>
+                <ul class="engagement-list">
+                    <li><span class="eng-dot"></span><b>Consulting fee</b> (quoted by scope) to package, qualify, and position the deal</li>
+                    <li><span class="eng-dot"></span>We align you to our <b>portfolio of partnerships</b> and funding channels</li>
+                    <li><span class="eng-dot"></span>Success-based components may apply at close (fully disclosed in writing)</li>
+                </ul>
+                <a class="engagement-cta" href="#programs">Explore funding programs →</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="tokenization">
             <div class="section-header">
                 <div class="section-number">01</div>
                 <div class="section-title-group">
@@ -1145,7 +1575,7 @@
                         <div class="fee-timing">Due Upfront</div>
                         <div class="fee-desc">
                             Covers initial token build-out, smart contract development, legal structuring, 
-                            and SEC filing preparation.
+                            and compliance documentation preparation (as applicable).
                         </div>
                     </div>
                     <div class="fee-card">
@@ -1172,7 +1602,7 @@
                 <div class="section-number">02</div>
                 <div class="section-title-group">
                     <h2>Funding Programs</h2>
-                    <p>60+ funding products through our 3,000+ partner network</p>
+                    <p>60+ funding products through our 3,000+ partner network <span style="color: var(--platinum);">Non‑tokenization placements are handled via consulting engagement.</span></p>
                 </div>
             </div>
             
@@ -1619,7 +2049,7 @@
     </div>
 
     <!-- Disclaimers -->
-    <section class="disclaimer-section">
+    <section id="disclosures" class="disclaimer-section">
         <div class="disclaimer-header">
             <h3>Important Disclosures</h3>
             <p style="color: var(--silver); max-width: 600px; margin: 0 auto;">
@@ -1663,7 +2093,7 @@
     </section>
 
     <!-- CTA Section -->
-    <section class="cta-section">
+    <section id="contact" class="cta-section">
         <div class="cta-content">
             <h2>Ready to <em>Begin?</em></h2>
             <p style="color: var(--silver); font-size: 1.1rem;">
@@ -1691,6 +2121,44 @@
     </footer>
 
     <script>
+
+        // Mobile Navigation Drawer
+        const navToggle = document.getElementById('navToggle');
+        const navDrawer = document.getElementById('navDrawer');
+        const navBackdrop = document.getElementById('navBackdrop');
+        const navClose = document.getElementById('navClose');
+
+        const openNav = () => {
+            if (!navDrawer) return;
+            navDrawer.classList.add('open');
+            navBackdrop.classList.add('open');
+            navDrawer.setAttribute('aria-hidden', 'false');
+            navToggle.setAttribute('aria-expanded', 'true');
+            document.body.style.overflow = 'hidden';
+        };
+
+        const closeNav = () => {
+            if (!navDrawer) return;
+            navDrawer.classList.remove('open');
+            navBackdrop.classList.remove('open');
+            navDrawer.setAttribute('aria-hidden', 'true');
+            navToggle.setAttribute('aria-expanded', 'false');
+            document.body.style.overflow = '';
+        };
+
+        navToggle && navToggle.addEventListener('click', openNav);
+        navClose && navClose.addEventListener('click', closeNav);
+        navBackdrop && navBackdrop.addEventListener('click', closeNav);
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeNav();
+        });
+
+        // Close drawer after clicking a link
+        document.querySelectorAll('#navDrawer a[href^="#"]').forEach(a => {
+            a.addEventListener('click', () => closeNav());
+        });
+
         // Tab Navigation
         document.querySelectorAll('.nav-pill').forEach(pill => {
             pill.addEventListener('click', function() {
