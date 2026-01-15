@@ -3,587 +3,762 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="KA Global provides institutional capital placement through tokenized capital solutions ($5M+) and consulting-based placement across 60+ funding programs—from early-stage to growth capital.">
+    <meta property="og:title" content="KA Global | Institutional Capital Placement">
+    <meta property="og:description" content="Tokenized capital solutions for qualified deals ($5M+) or consulting-based placement across multiple institutional channels. 2,400+ funding partners.">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="KA Global">
     <title>KA Global | Institutional Capital Placement</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Syne:wght@400;500;600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        @keyframes grain {
-            0%, 100% { transform: translate(0, 0) }
-            10% { transform: translate(-5%, -10%) }
-            20% { transform: translate(-15%, 5%) }
-            30% { transform: translate(7%, -25%) }
-            40% { transform: translate(-5%, 25%) }
-            50% { transform: translate(-15%, 10%) }
-            60% { transform: translate(15%, 0%) }
-            70% { transform: translate(0%, 15%) }
-            80% { transform: translate(3%, 35%) }
-            90% { transform: translate(-10%, 10%) }
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0) rotate(0deg); }
-            50% { transform: translateY(-20px) rotate(2deg); }
-        }
-
-        @keyframes shimmer {
-            0% { background-position: -200% center; }
-            100% { background-position: 200% center; }
-        }
-
-        @keyframes fadeUp {
-            from { opacity: 0; transform: translateY(40px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        @keyframes scaleIn {
-            from { opacity: 0; transform: scale(0.9); }
-            to { opacity: 1; transform: scale(1); }
-        }
-
-        @keyframes lineExpand {
-            from { transform: scaleX(0); }
-            to { transform: scaleX(1); }
-        }
-
-        @keyframes pulse {
-            0%, 100% { opacity: 0.4; }
-            50% { opacity: 0.8; }
-        }
-
-        @keyframes numberCount {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        * {
+        *, *::before, *::after {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
         :root {
-        --obsidian: #0A0A0B;
-        --onyx: #121214;
-        --carbon: #1A1A1D;
-        --graphite: #2A2A2E;
-        --silver: #8A8A8F;
-        --platinum: #C4C4C8;
-        --ivory: #FAFAF9;
-        --gold: #D4AF37;
-        --gold-light: #E8C860;
-        --gold-dark: #B8960F;
-        --gold-muted: rgba(212, 175, 55, 0.15);
-        --emerald: #2D5A4A;
-        --accent: #D4AF37;
-    }
+            --bg-primary: #0a0a0a;
+            --bg-secondary: #0f0f0f;
+            --bg-tertiary: #151515;
+            --bg-elevated: #1a1a1a;
+            --border-subtle: rgba(255,255,255,0.06);
+            --border-medium: rgba(255,255,255,0.1);
+            --border-strong: rgba(255,255,255,0.15);
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0a0;
+            --text-tertiary: #666666;
+            --accent: #c6a84b;
+            --accent-light: #dcc36a;
+            --accent-dark: #9a8339;
+            --accent-glow: rgba(198, 168, 75, 0.15);
+            --accent-subtle: rgba(198, 168, 75, 0.08);
+            --success: #3d9970;
+            --success-subtle: rgba(61, 153, 112, 0.12);
+        }
 
         html {
             scroll-behavior: smooth;
+            font-size: 16px;
         }
 
         body {
-            font-family: 'DM Sans', sans-serif;
-            background: var(--obsidian);
-            color: var(--platinum);
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-secondary);
             line-height: 1.7;
             overflow-x: hidden;
+            font-size: 15px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            letter-spacing: -0.01em;
         }
 
-        /* Grain Overlay */
-        body::before {
-            content: '';
-            position: fixed;
-            top: -50%;
-            left: -50%;
-            right: -50%;
-            bottom: -50%;
-            width: 200%;
-            height: 200%;
-            background: transparent url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-            opacity: 0.03;
-            pointer-events: none;
-            z-index: 9999;
-            animation: grain 8s steps(10) infinite;
-        }
-
-        /* Selection */
         ::selection {
-            background: var(--gold);
-            color: var(--obsidian);
+            background: var(--accent);
+            color: var(--bg-primary);
         }
 
-        /* Scrollbar */
         ::-webkit-scrollbar {
-            width: 6px;
+            width: 8px;
         }
         ::-webkit-scrollbar-track {
-            background: var(--onyx);
+            background: var(--bg-secondary);
         }
         ::-webkit-scrollbar-thumb {
-            background: linear-gradient(180deg, var(--gold), var(--gold-dark));
-            border-radius: 3px;
+            background: var(--accent-dark);
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--accent);
         }
 
-        /* Hero Section */
-        .hero {
-            min-height: 100vh;
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            padding: 6rem 4rem;
-            background: 
-                radial-gradient(ellipse 80% 50% at 20% 40%, rgba(212, 175, 55, 0.08) 0%, transparent 50%),
-                radial-gradient(ellipse 60% 60% at 80% 20%, rgba(45, 90, 74, 0.1) 0%, transparent 50%),
-                linear-gradient(180deg, var(--obsidian) 0%, var(--onyx) 100%);
-            overflow: hidden;
+        /* Typography */
+        h1, h2, h3 {
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-weight: 500;
+            color: var(--text-primary);
+            letter-spacing: -0.01em;
         }
 
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, var(--gold), transparent);
-        }
-
-        /* Geometric Decorations */
-        .geo-decoration {
-            position: absolute;
-            pointer-events: none;
-        }
-
-        .geo-1 {
-            top: 10%;
-            right: 5%;
-            width: 400px;
-            height: 400px;
-            border: 1px solid var(--gold-muted);
-            border-radius: 50%;
-            animation: float 20s ease-in-out infinite;
-        }
-
-        .geo-2 {
-            bottom: 15%;
-            left: 3%;
-            width: 200px;
-            height: 200px;
-            border: 1px solid var(--gold-muted);
-            transform: rotate(45deg);
-            animation: float 15s ease-in-out infinite reverse;
-        }
-
-        .geo-3 {
-            top: 40%;
-            right: 15%;
-            width: 80px;
-            height: 80px;
-            background: var(--gold-muted);
-            animation: pulse 4s ease-in-out infinite;
-        }
-
-        /* Navigation */
+        /* ========================================
+           NAVIGATION
+           ======================================== */
         .nav {
             position: fixed;
             top: 0;
             left: 0;
             right: 0;
-            padding: 1.5rem 4rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
             z-index: 1000;
-            background: linear-gradient(180deg, rgba(10, 10, 11, 0.95), transparent);
+            padding: 1rem 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .nav-inner {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.75rem 1.5rem;
+            background: rgba(10, 10, 10, 0.8);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--border-subtle);
+            border-radius: 100px;
         }
 
-        .logo {
-            font-family: 'Syne', sans-serif;
-            font-size: 1.5rem;
-            font-weight: 800;
-            letter-spacing: 0.3em;
-            color: var(--ivory);
-        }
-
-        .logo span {
-            color: var(--gold);
-        }
-
-        .nav-contact {
+        .brand {
             display: flex;
-            gap: 2rem;
             align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+        }
+
+        .brand-text {
+            font-family: 'Inter', sans-serif;
+            font-weight: 700;
+            font-size: 1.15rem;
+            letter-spacing: 0.25em;
+            color: var(--text-primary);
+        }
+
+        .brand-text span {
+            color: var(--accent);
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
         }
 
         .nav-link {
-            font-size: 0.75rem;
-            letter-spacing: 0.15em;
-            text-transform: uppercase;
-            color: var(--silver);
+            padding: 0.6rem 1.1rem;
+            font-size: 0.8rem;
+            font-weight: 500;
+            letter-spacing: 0.03em;
+            color: var(--text-secondary);
             text-decoration: none;
-            transition: color 0.3s;
+            border-radius: 100px;
+            transition: all 0.25s ease;
         }
 
         .nav-link:hover {
-            color: var(--gold);
+            color: var(--text-primary);
+            background: rgba(255,255,255,0.05);
         }
 
-        /* Hero Content */
+        .nav-cta {
+            padding: 0.6rem 1.25rem;
+            background: var(--accent);
+            color: var(--bg-primary);
+            font-family: 'Inter', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            text-decoration: none;
+            border-radius: 100px;
+            transition: all 0.25s ease;
+        }
+
+        .nav-cta:hover {
+            background: var(--accent-light);
+            transform: translateY(-1px);
+        }
+
+        .nav-toggle {
+            display: none;
+            width: 40px;
+            height: 40px;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid var(--border-subtle);
+            border-radius: 10px;
+            color: var(--text-primary);
+            cursor: pointer;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Mobile Drawer */
+        .nav-backdrop {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.6);
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+            z-index: 1100;
+        }
+
+        .nav-backdrop.open {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .nav-drawer {
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: min(380px, 90vw);
+            height: 100vh;
+            background: var(--bg-secondary);
+            border-left: 1px solid var(--border-subtle);
+            transform: translateX(100%);
+            transition: transform 0.3s ease;
+            z-index: 1200;
+            display: flex;
+            flex-direction: column;
+            padding: 1.5rem;
+        }
+
+        .nav-drawer.open {
+            transform: translateX(0);
+        }
+
+        .drawer-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border-subtle);
+            margin-bottom: 1.5rem;
+        }
+
+        .drawer-title {
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            font-size: 0.8rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--text-secondary);
+        }
+
+        .drawer-close {
+            width: 40px;
+            height: 40px;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid var(--border-subtle);
+            border-radius: 10px;
+            color: var(--text-primary);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .drawer-links {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .drawer-links a {
+            padding: 1rem 1.25rem;
+            background: rgba(255,255,255,0.02);
+            border: 1px solid var(--border-subtle);
+            border-radius: 12px;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: all 0.2s ease;
+        }
+
+        .drawer-links a:hover {
+            background: rgba(255,255,255,0.05);
+            border-color: var(--accent-dark);
+            color: var(--text-primary);
+        }
+
+        .drawer-contact {
+            margin-top: auto;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--border-subtle);
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .drawer-contact a {
+            padding: 1rem 1.25rem;
+            background: rgba(255,255,255,0.02);
+            border: 1px solid var(--border-subtle);
+            border-radius: 12px;
+            color: var(--text-primary);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: all 0.2s ease;
+        }
+
+        .drawer-contact a:hover {
+            background: var(--accent-subtle);
+            border-color: var(--accent-dark);
+        }
+
+        /* ========================================
+           HERO SECTION
+           ======================================== */
+        .hero {
+            min-height: 100vh;
+            position: relative;
+            display: flex;
+            align-items: center;
+            padding: 8rem 2rem 6rem;
+            overflow: hidden;
+        }
+
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            background: 
+                radial-gradient(ellipse 80% 60% at 70% 30%, var(--accent-subtle), transparent 60%),
+                radial-gradient(ellipse 60% 50% at 20% 80%, rgba(61, 153, 112, 0.05), transparent 50%),
+                linear-gradient(180deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+        }
+
+        .hero-grid {
+            position: absolute;
+            inset: 0;
+            background-image: 
+                linear-gradient(var(--border-subtle) 1px, transparent 1px),
+                linear-gradient(90deg, var(--border-subtle) 1px, transparent 1px);
+            background-size: 80px 80px;
+            opacity: 0.3;
+            mask-image: radial-gradient(ellipse 60% 60% at 50% 50%, black, transparent);
+            -webkit-mask-image: radial-gradient(ellipse 60% 60% at 50% 50%, black, transparent);
+        }
+
+        .hero-glow {
+            position: absolute;
+            top: 20%;
+            right: 10%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, var(--accent-glow), transparent 70%);
+            filter: blur(80px);
+            animation: pulse 8s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.5; transform: scale(1); }
+            50% { opacity: 0.8; transform: scale(1.1); }
+        }
+
         .hero-content {
-            max-width: 900px;
+            max-width: 1400px;
+            margin: 0 auto;
+            width: 100%;
             position: relative;
             z-index: 1;
         }
 
-        .hero-eyebrow {
+        .hero-inner {
+            max-width: 800px;
+        }
+
+        .hero-badge {
             display: inline-flex;
             align-items: center;
-            gap: 1rem;
+            gap: 0.75rem;
+            padding: 0.5rem 1rem;
+            background: var(--accent-subtle);
+            border: 1px solid rgba(198, 168, 75, 0.2);
+            border-radius: 100px;
             margin-bottom: 2rem;
-            animation: fadeUp 1s ease-out forwards;
+            animation: fadeUp 0.8s ease forwards;
         }
 
-        .hero-eyebrow::before {
-            content: '';
-            width: 60px;
-            height: 1px;
-            background: var(--gold);
+        .hero-badge-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--accent);
+            border-radius: 50%;
+            animation: blink 2s ease-in-out infinite;
         }
 
-        .hero-eyebrow span {
-            font-size: 0.7rem;
-            letter-spacing: 0.4em;
-            text-transform: uppercase;
-            color: var(--gold);
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.4; }
+        }
+
+        .hero-badge span {
+            font-size: 0.75rem;
             font-weight: 600;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--accent);
+        }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .hero-title {
-            font-family: 'Playfair Display', serif;
-            font-size: clamp(3rem, 8vw, 6rem);
-            font-weight: 400;
-            line-height: 1.1;
-            color: var(--ivory);
-            margin-bottom: 2rem;
-            animation: fadeUp 1s ease-out 0.2s forwards;
+            font-size: clamp(3rem, 8vw, 5.5rem);
+            line-height: 1.05;
+            margin-bottom: 1.5rem;
+            animation: fadeUp 0.8s ease 0.1s forwards;
             opacity: 0;
         }
 
         .hero-title em {
             font-style: italic;
-            color: var(--gold);
+            color: var(--accent);
         }
 
         .hero-subtitle {
             font-size: 1.15rem;
-            color: var(--silver);
-            max-width: 600px;
-            line-height: 1.9;
+            line-height: 1.8;
+            color: var(--text-secondary);
+            max-width: 580px;
             margin-bottom: 3rem;
-            animation: fadeUp 1s ease-out 0.4s forwards;
+            animation: fadeUp 0.8s ease 0.2s forwards;
             opacity: 0;
         }
 
-        /* Stats Grid */
-        .stats-grid {
+        /* Stats Row */
+        .hero-stats {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 2rem;
-            margin-bottom: 3rem;
-            animation: fadeUp 1s ease-out 0.6s forwards;
+            gap: 1px;
+            background: var(--border-subtle);
+            border-radius: 16px;
+            overflow: hidden;
+            margin-bottom: 2.5rem;
+            animation: fadeUp 0.8s ease 0.3s forwards;
             opacity: 0;
         }
 
-        .stat-card {
-            padding: 2rem;
-            background: linear-gradient(135deg, rgba(255,255,255,0.02), transparent);
-            border: 1px solid rgba(212, 175, 55, 0.1);
-            position: relative;
-            overflow: hidden;
-            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        .stat-item {
+            padding: 1.5rem;
+            background: var(--bg-secondary);
+            text-align: center;
+            transition: all 0.3s ease;
         }
 
-        .stat-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 2px;
-            background: linear-gradient(90deg, var(--gold), transparent);
-            transform: scaleX(0);
-            transform-origin: left;
-            transition: transform 0.5s;
-        }
-
-        .stat-card:hover::before {
-            transform: scaleX(1);
-        }
-
-        .stat-card:hover {
-            background: linear-gradient(135deg, rgba(212, 175, 55, 0.05), transparent);
-            border-color: rgba(212, 175, 55, 0.3);
-            transform: translateY(-4px);
+        .stat-item:hover {
+            background: var(--bg-tertiary);
         }
 
         .stat-value {
-            font-family: 'Syne', sans-serif;
-            font-size: 2.5rem;
-            font-weight: 700;
-            color: var(--gold);
-            line-height: 1;
-            margin-bottom: 0.5rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1.75rem;
+            font-weight: 600;
+            color: var(--accent);
+            margin-bottom: 0.25rem;
         }
 
         .stat-label {
-            font-size: 0.65rem;
-            letter-spacing: 0.2em;
+            font-size: 0.7rem;
+            font-weight: 500;
+            letter-spacing: 0.12em;
             text-transform: uppercase;
-            color: var(--silver);
+            color: var(--text-tertiary);
         }
 
         /* CTA Buttons */
-        .hero-actions {
-            display: flex;
-            gap: 1.5rem;
-            flex-wrap: wrap;
-            animation: fadeUp 1s ease-out 0.8s forwards;
+        .hero-note {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            padding: 0.75rem 1.25rem;
+            background: rgba(61, 153, 112, 0.1);
+            border: 1px solid rgba(61, 153, 112, 0.2);
+            border-radius: 10px;
+            margin-bottom: 2rem;
+            animation: fadeUp 0.8s ease 0.35s forwards;
             opacity: 0;
         }
 
-        .btn-primary {
-            padding: 1.25rem 3rem;
-            background: var(--gold);
-            color: var(--obsidian);
-            font-family: 'DM Sans', sans-serif;
-            font-size: 0.75rem;
+        .hero-note svg {
+            color: var(--success);
+            flex-shrink: 0;
+        }
+
+        .hero-note span {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 1rem;
+            animation: fadeUp 0.8s ease 0.45s forwards;
+            opacity: 0;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem 2rem;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.8rem;
             font-weight: 600;
-            letter-spacing: 0.15em;
+            letter-spacing: 0.08em;
             text-transform: uppercase;
             text-decoration: none;
-            border: none;
+            border-radius: 8px;
+            transition: all 0.3s ease;
             cursor: pointer;
-            position: relative;
-            overflow: hidden;
-            transition: all 0.4s;
+            border: none;
         }
 
-        .btn-primary::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-            transition: left 0.5s;
-        }
-
-        .btn-primary:hover::before {
-            left: 100%;
+        .btn-primary {
+            background: var(--accent);
+            color: var(--bg-primary);
         }
 
         .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 20px 40px rgba(212, 175, 55, 0.3);
+            background: var(--accent-light);
+            transform: translateY(-2px);
+            box-shadow: 0 20px 40px rgba(198, 168, 75, 0.2);
         }
 
-        .btn-outline {
-            padding: 1.25rem 3rem;
+        .btn-secondary {
             background: transparent;
-            color: var(--ivory);
-            font-family: 'DM Sans', sans-serif;
-            font-size: 0.75rem;
-            font-weight: 600;
-            letter-spacing: 0.15em;
-            text-transform: uppercase;
-            text-decoration: none;
-            border: 1px solid rgba(255,255,255,0.2);
-            cursor: pointer;
-            transition: all 0.4s;
+            color: var(--text-primary);
+            border: 1px solid var(--border-medium);
         }
 
-        .btn-outline:hover {
-            border-color: var(--gold);
-            color: var(--gold);
-            transform: translateY(-3px);
+        .btn-secondary:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+            transform: translateY(-2px);
         }
 
-        /* Main Container */
+        /* ========================================
+           MAIN CONTAINER
+           ======================================== */
         .main-container {
-            max-width: 1600px;
+            max-width: 1400px;
             margin: 0 auto;
-            padding: 0 4rem 6rem;
+            padding: 0 2rem;
         }
 
-        /* Section Headers */
+        /* Section Styling */
+        section {
+            padding: 6rem 0;
+        }
+
         .section-header {
             display: flex;
-            align-items: center;
-            gap: 2rem;
-            margin-bottom: 4rem;
-            padding-top: 6rem;
+            align-items: flex-start;
+            gap: 1.5rem;
+            margin-bottom: 3rem;
         }
 
         .section-number {
-            font-family: 'Syne', sans-serif;
-            font-size: 5rem;
-            font-weight: 800;
-            color: transparent;
-            -webkit-text-stroke: 1px var(--gold-muted);
-            line-height: 1;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 4rem;
+            font-weight: 700;
+            color: var(--bg-tertiary);
+            line-height: 0.9;
         }
 
-        .section-title-group h2 {
-            font-family: 'Playfair Display', serif;
+        .section-info h2 {
             font-size: 2.5rem;
-            font-weight: 500;
-            color: var(--ivory);
             margin-bottom: 0.5rem;
         }
 
-        .section-title-group p {
-            font-size: 0.9rem;
-            color: var(--silver);
+        .section-info p {
+            font-size: 1rem;
+            color: var(--text-tertiary);
         }
 
-        
-        /* Engagement Options */
-        .engagement-section {
-            background: linear-gradient(135deg, var(--onyx), var(--carbon));
-            border: 1px solid rgba(212, 175, 55, 0.12);
-            padding: 4rem;
+        /* ========================================
+           ENGAGEMENT OPTIONS
+           ======================================== */
+        #engagement {
+            padding-top: 4rem;
+        }
+
+        .engagement-header {
+            text-align: center;
             margin-bottom: 4rem;
-            position: relative;
-            overflow: hidden;
         }
 
-        .engagement-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 4px;
-            height: 100%;
-            background: linear-gradient(to bottom, var(--gold), transparent);
+        .engagement-eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
         }
 
-        .engagement-section::after {
+        .engagement-eyebrow::before,
+        .engagement-eyebrow::after {
             content: '';
-            position: absolute;
-            inset: -40% -30%;
-            background: radial-gradient(circle at 20% 30%, rgba(212,175,55,0.16), transparent 55%);
-            transform: rotate(-10deg);
-            pointer-events: none;
+            width: 40px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--accent));
+        }
+
+        .engagement-eyebrow::after {
+            background: linear-gradient(90deg, var(--accent), transparent);
+        }
+
+        .engagement-eyebrow span {
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--accent);
+        }
+
+        .engagement-header h2 {
+            font-size: clamp(2rem, 5vw, 3rem);
+            margin-bottom: 1rem;
+        }
+
+        .engagement-header p {
+            font-size: 1.05rem;
+            color: var(--text-tertiary);
+            max-width: 600px;
+            margin: 0 auto;
         }
 
         .engagement-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 2rem;
-            margin-top: 2.5rem;
-            position: relative;
-        }
-
-        @media (max-width: 980px) {
-            .engagement-section { padding: 2.25rem 1.5rem; }
-            .engagement-grid { grid-template-columns: 1fr; }
+            gap: 1.5rem;
         }
 
         .engagement-card {
-            background: rgba(26,26,29,0.65);
-            border: 1px solid rgba(212, 175, 55, 0.12);
-            padding: 2rem;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-subtle);
+            border-radius: 20px;
+            padding: 2.5rem;
             position: relative;
-            transition: transform 0.25s ease, border-color 0.25s ease;
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
+            overflow: hidden;
+            transition: all 0.4s ease;
+        }
+
+        .engagement-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent), var(--accent-light));
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s ease;
         }
 
         .engagement-card:hover {
+            border-color: rgba(198, 168, 75, 0.3);
             transform: translateY(-4px);
-            border-color: rgba(212, 175, 55, 0.38);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.2);
         }
 
-        .engagement-kicker {
-            display: inline-block;
-            font-size: 0.7rem;
-            letter-spacing: 0.16em;
+        .engagement-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .engagement-card.featured {
+            background: linear-gradient(145deg, rgba(198, 168, 75, 0.05), var(--bg-secondary));
+            border-color: rgba(198, 168, 75, 0.15);
+        }
+
+        .card-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            padding: 0.4rem 0.9rem;
+            background: var(--accent-subtle);
+            border: 1px solid rgba(198, 168, 75, 0.2);
+            border-radius: 100px;
+            font-size: 0.65rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
             text-transform: uppercase;
-            color: var(--gold-light);
-            margin-bottom: 0.75rem;
+            color: var(--accent);
+            margin-bottom: 1.25rem;
+        }
+
+        .card-badge.alt {
+            background: var(--success-subtle);
+            border-color: rgba(61, 153, 112, 0.2);
+            color: var(--success);
         }
 
         .engagement-card h3 {
-            font-family: 'Syne', sans-serif;
-            font-size: 1.35rem;
-            color: var(--ivory);
-            margin: 0 0 0.75rem 0;
+            font-size: 1.5rem;
+            margin-bottom: 0.75rem;
         }
 
-        .engagement-card p {
+        .engagement-card > p {
             font-size: 0.95rem;
-            color: var(--silver);
+            color: var(--text-secondary);
             line-height: 1.7;
-            margin: 0 0 1.25rem 0;
+            margin-bottom: 1.5rem;
         }
 
-        .engagement-list {
-            list-style: none;
-            padding: 0;
-            margin: 0 0 1.5rem 0;
-            display: grid;
-            gap: 0.7rem;
-        }
-
-        .engagement-list li {
+        .card-highlights {
             display: flex;
-            gap: 0.75rem;
-            color: var(--platinum);
-            font-size: 0.92rem;
-            line-height: 1.6;
+            flex-wrap: wrap;
+            gap: 0.6rem;
+            margin-bottom: 1.5rem;
         }
 
-        .eng-dot {
-            width: 10px;
-            height: 10px;
-            border-radius: 3px;
-            background: linear-gradient(135deg, var(--gold), var(--gold-light));
-            transform: translateY(0.35rem);
-            flex: 0 0 auto;
-        }
-
-        .engagement-cta {
+        .highlight {
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
-            font-size: 0.75rem;
-            letter-spacing: 0.14em;
-            text-transform: uppercase;
-            color: var(--gold);
+            padding: 0.5rem 0.9rem;
+            background: rgba(0,0,0,0.3);
+            border: 1px solid var(--border-subtle);
+            border-radius: 8px;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+
+        .highlight strong {
+            color: var(--accent);
+            font-weight: 600;
+        }
+
+        .card-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            color: var(--accent);
             text-decoration: none;
-            border-bottom: 1px solid rgba(212,175,55,0.35);
             padding-bottom: 0.25rem;
-            transition: color 0.25s ease, border-color 0.25s ease;
-            position: relative;
-            z-index: 1;
+            border-bottom: 1px solid rgba(198, 168, 75, 0.3);
+            transition: all 0.25s ease;
         }
 
-        .engagement-cta:hover {
-            color: var(--gold-light);
-            border-color: rgba(232,200,96,0.55);
+        .card-link:hover {
+            color: var(--accent-light);
+            border-color: var(--accent-light);
         }
 
+        .card-link svg {
+            transition: transform 0.25s ease;
+        }
 
-        /* Tokenization Flow */
+        .card-link:hover svg {
+            transform: translateX(4px);
+        }
+
+        /* ========================================
+           TOKENIZATION SECTION
+           ======================================== */
         .token-section {
-            background: linear-gradient(135deg, var(--onyx), var(--carbon));
-            border: 1px solid rgba(212, 175, 55, 0.1);
-            padding: 4rem;
-            margin-bottom: 4rem;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-subtle);
+            border-radius: 24px;
+            padding: 3rem;
+            margin-top: 2rem;
             position: relative;
+            overflow: hidden;
         }
 
         .token-section::before {
@@ -593,7 +768,7 @@
             left: 0;
             width: 4px;
             height: 100%;
-            background: linear-gradient(180deg, var(--gold), var(--emerald));
+            background: linear-gradient(180deg, var(--accent), var(--success));
         }
 
         .token-header {
@@ -602,140 +777,146 @@
 
         .token-badge {
             display: inline-block;
-            padding: 0.5rem 1.5rem;
-            background: var(--gold-muted);
-            color: var(--gold);
-            font-size: 0.65rem;
+            padding: 0.5rem 1.25rem;
+            background: var(--accent-subtle);
+            border: 1px solid rgba(198, 168, 75, 0.2);
+            border-radius: 8px;
+            font-size: 0.7rem;
             font-weight: 600;
-            letter-spacing: 0.2em;
+            letter-spacing: 0.12em;
             text-transform: uppercase;
+            color: var(--accent);
             margin-bottom: 1.5rem;
         }
 
         .token-header h3 {
-            font-family: 'Playfair Display', serif;
-            font-size: 2.25rem;
-            color: var(--ivory);
+            font-size: 2rem;
             margin-bottom: 1rem;
         }
 
         .token-header p {
-            color: var(--silver);
+            font-size: 1rem;
+            color: var(--text-secondary);
             max-width: 700px;
             line-height: 1.8;
         }
 
-        /* Timeline Flow */
+        /* Timeline */
         .timeline {
-            display: flex;
-            justify-content: space-between;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+            margin: 3rem 0;
             position: relative;
-            margin: 4rem 0;
         }
 
         .timeline::before {
             content: '';
             position: absolute;
-            top: 40px;
+            top: 35px;
             left: 10%;
             right: 10%;
-            height: 1px;
-            background: linear-gradient(90deg, var(--gold), var(--gold-muted), var(--gold));
+            height: 2px;
+            background: linear-gradient(90deg, var(--accent), var(--accent-dark), var(--accent));
+            opacity: 0.3;
         }
 
         .timeline-step {
-            flex: 1;
             text-align: center;
             position: relative;
         }
 
         .timeline-icon {
-            width: 80px;
-            height: 80px;
-            margin: 0 auto 1.5rem;
-            background: var(--obsidian);
-            border: 2px solid var(--gold);
+            width: 70px;
+            height: 70px;
+            margin: 0 auto 1.25rem;
+            background: var(--bg-primary);
+            border: 2px solid var(--accent);
+            border-radius: 16px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-family: 'Syne', sans-serif;
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--gold);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1.15rem;
+            font-weight: 600;
+            color: var(--accent);
             position: relative;
             z-index: 1;
-            transition: all 0.4s;
+            transition: all 0.3s ease;
         }
 
         .timeline-step:hover .timeline-icon {
-            background: var(--gold);
-            color: var(--obsidian);
+            background: var(--accent);
+            color: var(--bg-primary);
             transform: scale(1.1);
         }
 
         .timeline-title {
             font-weight: 600;
-            color: var(--ivory);
-            margin-bottom: 0.5rem;
-            font-size: 0.9rem;
+            color: var(--text-primary);
+            margin-bottom: 0.4rem;
+            font-size: 0.95rem;
         }
 
         .timeline-desc {
             font-size: 0.8rem;
-            color: var(--silver);
-            max-width: 150px;
+            color: var(--text-tertiary);
+            max-width: 140px;
             margin: 0 auto;
         }
 
-        /* Fee Structure */
+        /* Fee Grid */
         .fee-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 2rem;
-            margin-top: 3rem;
+            gap: 1.25rem;
+            margin-top: 2rem;
         }
 
         .fee-card {
-            padding: 2rem;
-            background: rgba(0,0,0,0.3);
-            border: 1px solid rgba(212, 175, 55, 0.15);
-            transition: all 0.4s;
+            padding: 1.75rem;
+            background: var(--bg-primary);
+            border: 1px solid var(--border-subtle);
+            border-radius: 16px;
+            transition: all 0.3s ease;
         }
 
         .fee-card:hover {
-            border-color: var(--gold);
-            transform: translateY(-4px);
+            border-color: var(--accent-dark);
+            transform: translateY(-3px);
         }
 
         .fee-amount {
-            font-family: 'Syne', sans-serif;
-            font-size: 2rem;
-            font-weight: 700;
-            color: var(--gold);
-            margin-bottom: 0.5rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1.75rem;
+            font-weight: 600;
+            color: var(--accent);
+            margin-bottom: 0.35rem;
         }
 
         .fee-timing {
             font-size: 0.7rem;
-            letter-spacing: 0.15em;
+            font-weight: 600;
+            letter-spacing: 0.1em;
             text-transform: uppercase;
-            color: var(--emerald);
-            margin-bottom: 1rem;
-            padding-bottom: 1rem;
-            border-bottom: 1px solid rgba(255,255,255,0.05);
+            color: var(--success);
+            margin-bottom: 0.75rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 1px solid var(--border-subtle);
         }
 
         .fee-desc {
             font-size: 0.9rem;
-            color: var(--silver);
+            color: var(--text-secondary);
             line-height: 1.7;
         }
 
         .refund-notice {
             grid-column: 1 / -1;
-            padding: 1.5rem 2rem;
-            background: linear-gradient(135deg, rgba(45, 90, 74, 0.2), transparent);
-            border-left: 3px solid var(--emerald);
+            padding: 1.25rem 1.5rem;
+            background: var(--success-subtle);
+            border: 1px solid rgba(61, 153, 112, 0.2);
+            border-radius: 12px;
             display: flex;
             align-items: center;
             gap: 1rem;
@@ -743,188 +924,187 @@
 
         .refund-notice svg {
             flex-shrink: 0;
+            color: var(--success);
         }
 
         .refund-notice p {
             font-size: 0.9rem;
-            color: var(--platinum);
+            color: var(--text-secondary);
         }
 
-        /* Products Navigation */
-        .products-nav {
+        .refund-notice strong {
+            color: var(--success);
+        }
+
+        /* ========================================
+           PROGRAMS SECTION
+           ======================================== */
+        .programs-nav {
             display: flex;
+            flex-wrap: wrap;
             gap: 0.5rem;
-            margin-bottom: 3rem;
-            overflow-x: auto;
+            margin-bottom: 2.5rem;
             padding-bottom: 1rem;
+            overflow-x: auto;
         }
 
-        .nav-pill {
-            padding: 1rem 2rem;
+        .program-pill {
+            padding: 0.7rem 1.25rem;
             background: transparent;
-            border: 1px solid rgba(255,255,255,0.1);
-            color: var(--silver);
-            font-family: 'DM Sans', sans-serif;
-            font-size: 0.7rem;
-            font-weight: 600;
-            letter-spacing: 0.1em;
+            border: 1px solid var(--border-subtle);
+            border-radius: 100px;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.72rem;
+            font-weight: 500;
+            letter-spacing: 0.06em;
             text-transform: uppercase;
+            color: var(--text-secondary);
             cursor: pointer;
-            transition: all 0.3s;
+            transition: all 0.25s ease;
             white-space: nowrap;
         }
 
-        .nav-pill:hover {
-            border-color: var(--gold);
-            color: var(--gold);
+        .program-pill:hover {
+            border-color: var(--accent);
+            color: var(--accent);
         }
 
-        .nav-pill.active {
-            background: var(--gold);
-            border-color: var(--gold);
-            color: var(--obsidian);
+        .program-pill.active {
+            background: var(--accent);
+            border-color: var(--accent);
+            color: var(--bg-primary);
         }
 
-        /* Products Grid */
-        .products-grid {
+        .tab-section {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .tab-section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .programs-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
-            gap: 1.5rem;
+            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+            gap: 1.25rem;
         }
 
-        .product-card {
-            background: linear-gradient(145deg, var(--onyx), var(--carbon));
-            border: 1px solid rgba(255,255,255,0.05);
-            padding: 2rem;
+        .program-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-subtle);
+            border-radius: 16px;
+            padding: 1.75rem;
             position: relative;
-            cursor: pointer;
-            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.4s ease;
             overflow: hidden;
         }
 
-        .product-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, rgba(212, 175, 55, 0.05), transparent);
-            opacity: 0;
-            transition: opacity 0.5s;
-        }
-
-        .product-card::after {
+        .program-card::after {
             content: '';
             position: absolute;
             bottom: 0;
             left: 0;
             width: 0;
             height: 2px;
-            background: var(--gold);
-            transition: width 0.5s;
+            background: var(--accent);
+            transition: width 0.4s ease;
         }
 
-        .product-card:hover {
-            transform: translateY(-8px);
-            border-color: rgba(212, 175, 55, 0.3);
-            box-shadow: 0 30px 60px rgba(0,0,0,0.4);
+        .program-card:hover {
+            border-color: rgba(198, 168, 75, 0.3);
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
         }
 
-        .product-card:hover::before {
-            opacity: 1;
-        }
-
-        .product-card:hover::after {
+        .program-card:hover::after {
             width: 100%;
         }
 
-        .product-number {
+        .program-number {
             position: absolute;
-            top: 1.5rem;
-            right: 1.5rem;
-            font-family: 'Syne', sans-serif;
-            font-size: 2.5rem;
-            font-weight: 800;
-            color: transparent;
-            -webkit-text-stroke: 1px rgba(212, 175, 55, 0.2);
+            top: 1.25rem;
+            right: 1.25rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 2rem;
+            font-weight: 600;
+            color: var(--bg-tertiary);
         }
 
-        .product-card h4 {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.35rem;
-            color: var(--ivory);
+        .program-card h4 {
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-size: 1.3rem;
+            font-weight: 500;
+            color: var(--text-primary);
             margin-bottom: 1rem;
-            position: relative;
         }
 
-        .product-card ul {
+        .program-card ul {
             list-style: none;
-            margin-bottom: 1.5rem;
+            margin-bottom: 1.25rem;
         }
 
-        .product-card li {
-            padding: 0.5rem 0;
-            padding-left: 1.5rem;
+        .program-card li {
+            padding: 0.4rem 0;
+            padding-left: 1.25rem;
             font-size: 0.9rem;
-            color: var(--silver);
+            color: var(--text-secondary);
             position: relative;
         }
 
-        .product-card li::before {
+        .program-card li::before {
             content: '—';
             position: absolute;
             left: 0;
-            color: var(--gold);
+            color: var(--accent);
         }
 
-        .product-amount {
+        .program-amount {
             display: inline-block;
-            padding: 0.75rem 1.5rem;
-            background: linear-gradient(135deg, var(--gold), var(--gold-dark));
-            color: var(--obsidian);
-            font-family: 'Syne', sans-serif;
-            font-size: 0.8rem;
-            font-weight: 700;
-            letter-spacing: 0.05em;
+            padding: 0.6rem 1.1rem;
+            background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+            color: var(--bg-primary);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.72rem;
+            font-weight: 600;
+            letter-spacing: 0.02em;
+            border-radius: 6px;
         }
 
-        /* Tab Sections */
-        .tab-section {
-            display: none;
-        }
-
-        .tab-section.active {
-            display: block;
-            animation: fadeUp 0.6s ease-out;
-        }
-
-        /* Intake Requirements */
+        /* ========================================
+           REQUIREMENTS SECTION
+           ======================================== */
         .intake-section {
-            background: var(--onyx);
-            border: 1px solid rgba(255,255,255,0.05);
-            padding: 3rem;
-            margin: 4rem 0;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-subtle);
+            border-radius: 20px;
+            padding: 2.5rem;
+            margin-top: 2rem;
         }
 
         .intake-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 2rem;
-            margin-top: 2rem;
+            gap: 1.5rem;
         }
 
         .intake-block {
-            padding: 2rem;
-            background: rgba(0,0,0,0.3);
-            border-left: 2px solid var(--gold);
+            padding: 1.75rem;
+            background: var(--bg-primary);
+            border-left: 3px solid var(--accent);
+            border-radius: 0 12px 12px 0;
         }
 
         .intake-block h4 {
-            font-family: 'Syne', sans-serif;
-            font-size: 0.9rem;
-            font-weight: 700;
-            color: var(--gold);
+            font-family: 'Inter', sans-serif;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--accent);
             letter-spacing: 0.1em;
             text-transform: uppercase;
             margin-bottom: 1rem;
@@ -935,10 +1115,10 @@
         }
 
         .intake-block li {
-            padding: 0.6rem 0;
-            padding-left: 2rem;
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
             font-size: 0.9rem;
-            color: var(--platinum);
+            color: var(--text-secondary);
             position: relative;
         }
 
@@ -946,71 +1126,82 @@
             content: '✓';
             position: absolute;
             left: 0;
-            color: var(--gold);
-            font-weight: bold;
+            color: var(--accent);
+            font-weight: 600;
         }
 
-        /* Disclaimer Section */
-        .disclaimer-section {
-            background: linear-gradient(180deg, var(--carbon), var(--obsidian));
-            padding: 5rem 4rem;
-            margin-top: 4rem;
+        /* ========================================
+           DISCLOSURES SECTION
+           ======================================== */
+        .disclosures-section {
+            background: linear-gradient(180deg, var(--bg-secondary), var(--bg-primary));
+            padding: 5rem 2rem;
         }
 
-        .disclaimer-header {
-            text-align: center;
-            margin-bottom: 4rem;
-        }
-
-        .disclaimer-header h3 {
-            font-family: 'Playfair Display', serif;
-            font-size: 2rem;
-            color: var(--gold);
-            margin-bottom: 1rem;
-        }
-
-        .disclaimer-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2rem;
+        .disclosures-inner {
             max-width: 1400px;
             margin: 0 auto;
         }
 
-        .disclaimer-card {
-            padding: 2rem;
-            background: rgba(0,0,0,0.3);
-            border-left: 2px solid var(--gold-muted);
-            transition: all 0.3s;
+        .disclosures-header {
+            text-align: center;
+            margin-bottom: 3rem;
         }
 
-        .disclaimer-card:hover {
-            border-color: var(--gold);
+        .disclosures-header h3 {
+            font-size: 2rem;
+            color: var(--accent);
+            margin-bottom: 0.75rem;
         }
 
-        .disclaimer-card h4 {
-            font-size: 0.85rem;
+        .disclosures-header p {
+            font-size: 1rem;
+            color: var(--text-tertiary);
+        }
+
+        .disclosures-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.25rem;
+        }
+
+        .disclosure-card {
+            padding: 1.75rem;
+            background: var(--bg-primary);
+            border: 1px solid var(--border-subtle);
+            border-left: 3px solid var(--accent-dark);
+            border-radius: 0 12px 12px 0;
+            transition: all 0.3s ease;
+        }
+
+        .disclosure-card:hover {
+            border-left-color: var(--accent);
+        }
+
+        .disclosure-card h4 {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.75rem;
             font-weight: 600;
-            color: var(--gold);
+            color: var(--accent);
             letter-spacing: 0.1em;
             text-transform: uppercase;
-            margin-bottom: 1rem;
+            margin-bottom: 0.75rem;
         }
 
-        .disclaimer-card p {
+        .disclosure-card p {
             font-size: 0.9rem;
-            color: var(--silver);
-            line-height: 1.8;
+            color: var(--text-secondary);
+            line-height: 1.75;
         }
 
-        /* CTA Section */
+        /* ========================================
+           CTA SECTION
+           ======================================== */
         .cta-section {
-            background: 
-                radial-gradient(ellipse 60% 60% at 50% 50%, rgba(212, 175, 55, 0.1) 0%, transparent 60%),
-                var(--obsidian);
-            padding: 8rem 4rem;
+            padding: 6rem 2rem;
             text-align: center;
             position: relative;
+            overflow: hidden;
         }
 
         .cta-section::before {
@@ -1020,406 +1211,225 @@
             left: 0;
             right: 0;
             height: 1px;
-            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+            background: linear-gradient(90deg, transparent, var(--accent), transparent);
+        }
+
+        .cta-glow {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, var(--accent-subtle), transparent 60%);
+            filter: blur(80px);
+            pointer-events: none;
         }
 
         .cta-content {
-            max-width: 700px;
+            max-width: 600px;
             margin: 0 auto;
+            position: relative;
+            z-index: 1;
         }
 
         .cta-content h2 {
-            font-family: 'Playfair Display', serif;
-            font-size: 3rem;
-            color: var(--ivory);
-            margin-bottom: 1.5rem;
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            margin-bottom: 1rem;
         }
 
         .cta-content h2 em {
             font-style: italic;
-            color: var(--gold);
+            color: var(--accent);
+        }
+
+        .cta-content > p {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
         }
 
         .contact-card {
             display: inline-block;
-            padding: 2.5rem 4rem;
-            background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), transparent);
-            border: 1px solid var(--gold-muted);
-            margin: 2rem 0;
+            padding: 2rem 3rem;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-subtle);
+            border-radius: 20px;
+            margin-bottom: 2rem;
         }
 
         .contact-name {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.75rem;
-            color: var(--gold);
-            margin-bottom: 1rem;
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-size: 1.6rem;
+            font-weight: 500;
+            color: var(--accent);
+            margin-bottom: 0.75rem;
+        }
+
+        .contact-details {
+            display: flex;
+            flex-direction: column;
+            gap: 0.35rem;
         }
 
         .contact-details a {
-            display: block;
-            color: var(--ivory);
+            color: var(--text-primary);
             text-decoration: none;
-            font-size: 1.1rem;
-            margin: 0.5rem 0;
-            transition: color 0.3s;
+            font-size: 1rem;
+            transition: color 0.25s ease;
         }
 
         .contact-details a:hover {
-            color: var(--gold);
+            color: var(--accent);
         }
 
         .cta-buttons {
             display: flex;
-            gap: 1.5rem;
+            gap: 1rem;
             justify-content: center;
-            margin-top: 2rem;
         }
 
-        /* Footer */
+        /* ========================================
+           FOOTER
+           ======================================== */
         .footer {
-            background: var(--obsidian);
-            padding: 3rem 4rem;
-            border-top: 1px solid rgba(255,255,255,0.05);
+            padding: 2rem;
+            border-top: 1px solid var(--border-subtle);
             text-align: center;
         }
 
         .footer p {
-            font-size: 0.8rem;
-            color: var(--silver);
+            font-size: 0.85rem;
+            color: var(--text-tertiary);
         }
 
-        /* Responsive */
+        /* ========================================
+           RESPONSIVE
+           ======================================== */
         @media (max-width: 1024px) {
-            .hero {
-                padding: 6rem 2rem;
+            .nav-links {
+                display: none;
             }
-            
-            .nav {
-                padding: 1.5rem 2rem;
+
+            .nav-toggle {
+                display: flex;
             }
-            
-            .stats-grid {
+
+            .hero-stats {
                 grid-template-columns: repeat(2, 1fr);
             }
-            
-            .main-container {
-                padding: 0 2rem 4rem;
+
+            .engagement-grid {
+                grid-template-columns: 1fr;
             }
-            
-            .token-section {
-                padding: 2.5rem;
-            }
-            
+
             .timeline {
-                flex-direction: column;
-                gap: 2rem;
+                grid-template-columns: repeat(2, 1fr);
             }
-            
+
             .timeline::before {
                 display: none;
             }
-            
+
             .fee-grid {
                 grid-template-columns: 1fr;
             }
-            
+
             .intake-grid {
                 grid-template-columns: 1fr;
             }
         }
 
         @media (max-width: 768px) {
-            .hero-title {
+            .nav {
+                padding: 0.75rem 1rem;
+            }
+
+            .nav-inner {
+                padding: 0.5rem 1rem;
+            }
+
+            .hero {
+                padding: 7rem 1.5rem 4rem;
+            }
+
+            .hero-stats {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .hero-actions {
+                flex-direction: column;
+            }
+
+            .main-container {
+                padding: 0 1.5rem;
+            }
+
+            .section-header {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            .section-number {
                 font-size: 2.5rem;
             }
-            
-            .stats-grid {
+
+            .token-section {
+                padding: 2rem 1.5rem;
+            }
+
+            .timeline {
+                grid-template-columns: 1fr 1fr;
+                gap: 1.5rem;
+            }
+
+            .programs-grid {
                 grid-template-columns: 1fr;
             }
-            
-            .products-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .section-number {
-                font-size: 3rem;
-            }
-            
-            .section-title-group h2 {
-                font-size: 1.75rem;
-            }
-            
-            .cta-content h2 {
-                font-size: 2rem;
-            }
-            
+
             .cta-buttons {
                 flex-direction: column;
             }
-            
-            .nav-contact {
-                display: none;
-            }
         }
-    
-        /* Skip Link */
-        .skip-link {
-            position: absolute;
-            top: -60px;
-            left: 12px;
-            padding: 0.9rem 1.2rem;
-            background: rgba(255,255,255,0.08);
-            border: 1px solid rgba(255,255,255,0.18);
-            color: var(--ivory);
-            text-decoration: none;
-            border-radius: 999px;
-            z-index: 2000;
-            transition: top 0.2s ease;
-            backdrop-filter: blur(14px);
-            -webkit-backdrop-filter: blur(14px);
-        }
-        .skip-link:focus { top: 12px; outline: none; border-color: var(--gold); }
-
-        section[id] { scroll-margin-top: 110px; }
-
-        /* Brand + Navigation (Enhanced) */
-        .nav {
-            background: rgba(10, 10, 11, 0.82);
-            border-bottom: 1px solid rgba(255,255,255,0.06);
-        }
-
-        .brand {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.9rem;
-            text-decoration: none;
-            min-height: 44px;
-        }
-
-
-        .brand-text {
-            font-family: 'Syne', sans-serif;
-            font-weight: 800;
-            letter-spacing: 0.28em;
-            text-transform: uppercase;
-            font-size: 0.95rem;
-            color: var(--ivory);
-            line-height: 1;
-            padding: 0.35rem 0;
-        }
-
-        .brand-text span {
-            color: var(--gold);
-        }
-
-        .brand-logo {
-            height: 46px;
-            width: auto;
-            display: block;
-            filter: drop-shadow(0 10px 18px rgba(0,0,0,0.35));
-        }
-
-        .nav-desktop {
-            display: flex;
-            align-items: center;
-            gap: 2rem;
-        }
-
-        .nav-links {
-            display: flex;
-            align-items: center;
-            gap: 1.35rem;
-        }
-
-        .nav-item {
-            font-size: 0.75rem;
-            letter-spacing: 0.14em;
-            text-transform: uppercase;
-            color: var(--silver);
-            text-decoration: none;
-            transition: color 0.25s ease;
-            padding: 0.6rem 0.25rem;
-            border-radius: 10px;
-        }
-
-        .nav-item:hover { color: var(--gold); }
-        .nav-item:focus { outline: none; box-shadow: 0 0 0 3px rgba(212, 175, 55,0.22); color: var(--ivory); }
-
-        .nav-toggle {
-            display: none;
-            width: 44px;
-            height: 44px;
-            border-radius: 12px;
-            background: rgba(255,255,255,0.05);
-            border: 1px solid rgba(255,255,255,0.12);
-            color: var(--ivory);
-            cursor: pointer;
-            align-items: center;
-            justify-content: center;
-            transition: transform 0.2s ease, border-color 0.2s ease;
-        }
-
-        .nav-toggle:hover { transform: translateY(-1px); border-color: rgba(212, 175, 55,0.5); }
-
-        .nav-drawer {
-            position: fixed;
-            top: 0;
-            right: 0;
-            height: 100vh;
-            width: min(380px, 88vw);
-            background: rgba(10,10,11,0.92);
-            border-left: 1px solid rgba(255,255,255,0.08);
-            backdrop-filter: blur(22px);
-            -webkit-backdrop-filter: blur(22px);
-            transform: translateX(110%);
-            transition: transform 0.25s ease;
-            z-index: 1500;
-            display: flex;
-            flex-direction: column;
-            padding: 1.25rem 1.25rem 1.5rem;
-        }
-
-        .nav-drawer.open { transform: translateX(0); }
-
-        .drawer-head {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding-bottom: 1rem;
-            border-bottom: 1px solid rgba(255,255,255,0.06);
-            margin-bottom: 1rem;
-        }
-
-        .drawer-title {
-            font-family: 'Syne', sans-serif;
-            letter-spacing: 0.12em;
-            text-transform: uppercase;
-            font-size: 0.8rem;
-            color: var(--ivory);
-        }
-
-        .drawer-close {
-            width: 44px;
-            height: 44px;
-            border-radius: 12px;
-            background: rgba(255,255,255,0.05);
-            border: 1px solid rgba(255,255,255,0.12);
-            color: var(--ivory);
-            cursor: pointer;
-        }
-
-        .drawer-links {
-            display: grid;
-            gap: 0.35rem;
-            padding: 0.75rem 0;
-        }
-
-        .drawer-links a {
-            padding: 0.9rem 0.9rem;
-            border-radius: 14px;
-            background: rgba(255,255,255,0.03);
-            border: 1px solid rgba(255,255,255,0.06);
-            color: var(--platinum);
-            text-decoration: none;
-            font-size: 0.85rem;
-            transition: border-color 0.2s ease, transform 0.2s ease;
-        }
-
-        .drawer-links a:hover { border-color: rgba(212, 175, 55,0.45); transform: translateY(-1px); }
-
-        .drawer-contact {
-            margin-top: auto;
-            padding-top: 1rem;
-            border-top: 1px solid rgba(255,255,255,0.06);
-            display: grid;
-            gap: 0.6rem;
-        }
-
-        .drawer-contact a {
-            color: var(--ivory);
-            text-decoration: none;
-            padding: 0.9rem 0.9rem;
-            border-radius: 14px;
-            background: rgba(255,255,255,0.03);
-            border: 1px solid rgba(255,255,255,0.06);
-        }
-
-        .drawer-contact a:hover { border-color: rgba(212, 175, 55,0.45); }
-
-        .nav-backdrop {
-            position: fixed;
-            inset: 0;
-            background: rgba(0,0,0,0.55);
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.25s ease;
-            z-index: 1400;
-        }
-
-        .nav-backdrop.open {
-            opacity: 1;
-            pointer-events: auto;
-        }
-
-        @media (max-width: 980px) {
-            .nav-desktop { display: none; }
-            .nav-toggle { display: inline-flex; }
-            .nav { padding: 1.1rem 1.25rem; }
-            .brand-logo {
-            height: 46px;
-            width: auto;
-            display: block;
-            filter: drop-shadow(0 10px 18px rgba(0,0,0,0.35));
-        }
-        }
-
     </style>
 </head>
 <body>
-    <a class="skip-link" href="#tokenization">Skip to content</a>
-    <div id="top"></div>
     <!-- Navigation -->
-    <nav class="nav" aria-label="Primary navigation">
-        <a class="brand" href="#top" aria-label="KA Global home">
-            <div class="brand-text">KA <span>GLOBAL</span></div>
-        </a>
+    <nav class="nav">
+        <div class="nav-inner">
+            <a class="brand" href="#top">
+                <span class="brand-text">KA <span>GLOBAL</span></span>
+            </a>
 
-        <div class="nav-desktop">
             <div class="nav-links">
-                <a class="nav-item" href="#engagement">Engagement</a>
-            <a class="nav-item" href="#tokenization">Tokenization</a>
-                <a class="nav-item" href="#programs">Programs</a>
-                <a class="nav-item" href="#requirements">Requirements</a>
-                <a class="nav-item" href="#disclosures">Disclosures</a>
-                <a class="nav-item" href="#contact">Contact</a>
+                <a class="nav-link" href="#engagement">Engagement</a>
+                <a class="nav-link" href="#tokenization">Tokenization</a>
+                <a class="nav-link" href="#programs">Programs</a>
+                <a class="nav-link" href="#requirements">Requirements</a>
+                <a class="nav-link" href="#disclosures">Disclosures</a>
+                <a class="nav-cta" href="#contact">Contact</a>
             </div>
 
-            <div class="nav-contact">
-                <a href="mailto:andrey@kaglobal.io" class="nav-link">andrey@kaglobal.io</a>
-                <a href="tel:+15855009643" class="nav-link">585-500-9643</a>
-            </div>
-        </div>
-
-        <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-controls="navDrawer" aria-expanded="false">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                <path d="M4 6h16M4 12h16M4 18h16"/>
-            </svg>
-        </button>
-    </nav>
-
-    <div class="nav-backdrop" id="navBackdrop" aria-hidden="true"></div>
-
-    <aside class="nav-drawer" id="navDrawer" aria-hidden="true">
-        <div class="drawer-head">
-            <div class="drawer-title">Menu</div>
-            <button class="drawer-close" id="navClose" aria-label="Close menu">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                    <path d="M18 6 6 18M6 6l12 12"/>
+            <button class="nav-toggle" id="navToggle" aria-label="Open menu">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M4 6h16M4 12h16M4 18h16"/>
                 </svg>
             </button>
         </div>
+    </nav>
 
-        <nav class="drawer-links" aria-label="Mobile navigation">
+    <!-- Mobile Drawer -->
+    <div class="nav-backdrop" id="navBackdrop"></div>
+    <aside class="nav-drawer" id="navDrawer">
+        <div class="drawer-header">
+            <span class="drawer-title">Menu</span>
+            <button class="drawer-close" id="navClose" aria-label="Close menu">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M18 6L6 18M6 6l12 12"/>
+                </svg>
+            </button>
+        </div>
+        <nav class="drawer-links">
             <a href="#engagement">Engagement</a>
             <a href="#tokenization">Tokenization</a>
             <a href="#programs">Programs</a>
@@ -1427,114 +1437,136 @@
             <a href="#disclosures">Disclosures</a>
             <a href="#contact">Contact</a>
         </nav>
-
-        <div class="drawer-contact" aria-label="Contact">
+        <div class="drawer-contact">
             <a href="mailto:andrey@kaglobal.io">andrey@kaglobal.io</a>
             <a href="tel:+15855009643">585-500-9643</a>
         </div>
     </aside>
 
     <!-- Hero Section -->
-    <section class="hero">
-        <div class="geo-decoration geo-1"></div>
-        <div class="geo-decoration geo-2"></div>
-        <div class="geo-decoration geo-3"></div>
-        
+    <section class="hero" id="top">
+        <div class="hero-bg"></div>
+        <div class="hero-grid"></div>
+        <div class="hero-glow"></div>
+
         <div class="hero-content">
-            <div class="hero-eyebrow">
-                <span>Institutional Capital Placement</span>
-            </div>
-            
-            <h1 class="hero-title">
-                Tokenized Funding<br>for <em>Qualified</em> Assets
-            </h1>
-            
-            <p class="hero-subtitle">
-                Transform your assets, business, or revenue-generating projects into investor-ready 
-                digital representations. Access 2,400+ institutional partners with typical closes 
-                in 35-50 days.
-            </p>
-            
-            <div class="stats-grid">
-                <div class="stat-card">
-                    <div class="stat-value">2,400+</div>
-                    <div class="stat-label">Funding Partners</div>
+            <div class="hero-inner">
+                <div class="hero-badge">
+                    <div class="hero-badge-dot"></div>
+                    <span>Institutional Capital Placement</span>
                 </div>
-                <div class="stat-card">
-                    <div class="stat-value">$5M+</div>
-                    <div class="stat-label">Minimum Facility</div>
+
+                <h1 class="hero-title">
+                    Capital Solutions—<br>Tokenization <em>& More</em>
+                </h1>
+
+                <p class="hero-subtitle">
+                    Transform your assets, business, or revenue-generating projects into investor-ready 
+                    digital representations. Access 2,400+ institutional partners with typical closes 
+                    in 35-50 days. <strong>Tokenization starts at $5M+; other funding structures available from $100K.</strong>
+                </p>
+
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <div class="stat-value">2,400+</div>
+                        <div class="stat-label">Funding Partners</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value">$5M+</div>
+                        <div class="stat-label">Tokenization Min.</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value">50%+</div>
+                        <div class="stat-label">Leverage Target</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value">35-50</div>
+                        <div class="stat-label">Days to Close</div>
+                    </div>
                 </div>
-                <div class="stat-card">
-                    <div class="stat-value">50%+</div>
-                    <div class="stat-label">Leverage Target</div>
+
+                <div class="hero-note">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"/>
+                        <path d="M12 16v-4M12 8h.01"/>
+                    </svg>
+                    <span>Deals under $5M? We offer 60+ other funding programs via consulting engagement — from $100K+</span>
                 </div>
-                <div class="stat-card">
-                    <div class="stat-value">35-50</div>
-                    <div class="stat-label">Days to Close</div>
+
+                <div class="hero-actions">
+                    <a href="#tokenization" class="btn btn-primary">Explore Tokenization</a>
+                    <a href="tel:+15855009643" class="btn btn-secondary">Schedule a Call</a>
                 </div>
-            </div>
-            
-            <div class="hero-actions">
-                <a href="#tokenization" class="btn-primary">Explore Tokenization</a>
-                <a href="tel:+15855009643" class="btn-outline">Schedule a Call</a>
             </div>
         </div>
     </section>
 
     <!-- Main Content -->
     <div class="main-container">
-        
+
+        <!-- Engagement Options -->
+        <section id="engagement">
+            <div class="engagement-header">
+                <div class="engagement-eyebrow">
+                    <span>Two Paths Forward</span>
+                </div>
+                <h2>Engagement Options</h2>
+                <p>Premium tokenization, or consulting-based placement for everything else on the menu.</p>
+            </div>
+
+            <div class="engagement-grid">
+                <div class="engagement-card featured">
+                    <div class="card-badge">Premium</div>
+                    <h3>Tokenization (Funding Acceleration)</h3>
+                    <p>
+                        Ideal when a client qualifies for a premium, diligence-forward approach. We structure and tokenize a qualified asset,
+                        business, or project to improve verification, governance, and review speed.
+                    </p>
+                    <div class="card-highlights">
+                        <span class="highlight"><strong>$250,000</strong> to start</span>
+                        <span class="highlight"><strong>35–50 days</strong> close target</span>
+                        <span class="highlight">Best for larger raises</span>
+                    </div>
+                    <a class="card-link" href="#tokenization">
+                        View tokenization flow
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M5 12h14M12 5l7 7-7 7"/>
+                        </svg>
+                    </a>
+                </div>
+
+                <div class="engagement-card">
+                    <div class="card-badge alt">Most Common • From $100K</div>
+                    <h3>Consulting + Placement</h3>
+                    <p>
+                        If tokenization is not the fit, KA Global engages on a consulting basis to identify the best match across the full menu
+                        (angel/VC, private credit, real estate, land, project finance, federal pathways, and eligible asset monetization).
+                    </p>
+                    <div class="card-highlights">
+                        <span class="highlight"><strong>Consulting fee</strong> by scope</span>
+                        <span class="highlight"><strong>$100K – $5M+</strong> deals</span>
+                        <span class="highlight">Success-based options</span>
+                    </div>
+                    <a class="card-link" href="#programs">
+                        Explore funding programs
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M5 12h14M12 5l7 7-7 7"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </section>
+
         <!-- Tokenization Section -->
-        
-    <!-- Engagement Options -->
-    <section class="engagement-section" id="engagement" aria-labelledby="engagementTitle">
-        <div class="section-title-group">
-            <h2 id="engagementTitle">Engagement Options</h2>
-            <p>Two ways we work — premium tokenization, or consulting-based placement for everything else on the menu.</p>
-        </div>
-
-        <div class="engagement-grid">
-            <div class="engagement-card">
-                <div class="engagement-kicker">Premium</div>
-                <h3>Tokenization (Funding Acceleration)</h3>
-                <p>
-                    Ideal when a client qualifies for a premium, diligence-forward approach. We structure and tokenize a qualified asset,
-                    business, or project to improve verification, governance, and review speed.
-                </p>
-                <ul class="engagement-list">
-                    <li><span class="eng-dot"></span><b>$250,000</b> to start</li>
-                    <li><span class="eng-dot"></span><b>35–50 days</b> close target window</li>
-                    <li><span class="eng-dot"></span>Best for larger raises + higher scrutiny</li>
-                </ul>
-                <a class="engagement-cta" href="#tokenization">View tokenization flow →</a>
-            </div>
-
-            <div class="engagement-card">
-                <div class="engagement-kicker">Most common</div>
-                <h3>Consulting + Placement (Non‑Tokenization)</h3>
-                <p>
-                    If tokenization is not the fit, KA Global engages on a consulting basis to identify the best match across the full menu
-                    (angel/VC, private credit, real estate, land, project finance, federal pathways, and eligible asset monetization).
-                </p>
-                <ul class="engagement-list">
-                    <li><span class="eng-dot"></span><b>Consulting fee</b> (quoted by scope) to package, qualify, and position the deal</li>
-                    <li><span class="eng-dot"></span>We align you to our <b>portfolio of partnerships</b> and funding channels</li>
-                    <li><span class="eng-dot"></span>Success-based components may apply at close (fully disclosed in writing)</li>
-                </ul>
-                <a class="engagement-cta" href="#programs">Explore funding programs →</a>
-            </div>
-        </div>
-    </section>
-
-    <section id="tokenization">
+        <section id="tokenization">
             <div class="section-header">
                 <div class="section-number">01</div>
-                <div class="section-title-group">
+                <div class="section-info">
                     <h2>Tokenization for Funding</h2>
                     <p>Our fastest and most versatile capital solution</p>
                 </div>
             </div>
-            
+
             <div class="token-section">
                 <div class="token-header">
                     <div class="token-badge">35-50 Day Close</div>
@@ -1545,7 +1577,7 @@
                         move from underwriting to funding with fewer bottlenecks.
                     </p>
                 </div>
-                
+
                 <div class="timeline">
                     <div class="timeline-step">
                         <div class="timeline-icon">01</div>
@@ -1568,7 +1600,7 @@
                         <div class="timeline-desc">Docs executed and capital disbursed</div>
                     </div>
                 </div>
-                
+
                 <div class="fee-grid">
                     <div class="fee-card">
                         <div class="fee-amount">$250,000</div>
@@ -1586,7 +1618,7 @@
                         </div>
                     </div>
                     <div class="refund-notice">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2D5A4A" stroke-width="2">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
                             <polyline points="22 4 12 14.01 9 11.01"/>
                         </svg>
@@ -1600,27 +1632,27 @@
         <section id="programs">
             <div class="section-header">
                 <div class="section-number">02</div>
-                <div class="section-title-group">
+                <div class="section-info">
                     <h2>Funding Programs</h2>
-                    <p>60+ funding products through our 3,000+ partner network <span style="color: var(--platinum);">Non‑tokenization placements are handled via consulting engagement.</span></p>
+                    <p>60+ funding products through our 3,000+ partner network. Non-tokenization placements are handled via consulting engagement.</p>
                 </div>
             </div>
-            
-            <div class="products-nav">
-                <button class="nav-pill active" data-tab="tokenization-programs">Tokenization ($5M+)</button>
-                <button class="nav-pill" data-tab="early-stage">Early-Stage</button>
-                <button class="nav-pill" data-tab="growth">Growth Capital</button>
-                <button class="nav-pill" data-tab="working-capital">Working Capital</button>
-                <button class="nav-pill" data-tab="real-estate">Real Estate</button>
-                <button class="nav-pill" data-tab="specialty">Specialty</button>
-                <button class="nav-pill" data-tab="government">Government</button>
+
+            <div class="programs-nav">
+                <button class="program-pill active" data-tab="tokenization-programs">Tokenization ($5M+)</button>
+                <button class="program-pill" data-tab="early-stage">Early-Stage</button>
+                <button class="program-pill" data-tab="growth">Growth Capital</button>
+                <button class="program-pill" data-tab="working-capital">Working Capital</button>
+                <button class="program-pill" data-tab="real-estate">Real Estate</button>
+                <button class="program-pill" data-tab="specialty">Specialty</button>
+                <button class="program-pill" data-tab="government">Government</button>
             </div>
-            
+
             <!-- Tokenization Programs -->
             <div id="tokenization-programs" class="tab-section active">
-                <div class="products-grid">
-                    <div class="product-card">
-                        <span class="product-number">01</span>
+                <div class="programs-grid">
+                    <div class="program-card">
+                        <span class="program-number">01</span>
                         <h4>Asset-Based Lending (ABL)</h4>
                         <ul>
                             <li>Capital secured by verifiable assets</li>
@@ -1628,11 +1660,11 @@
                             <li>Underwriting driven by collateral quality</li>
                             <li>Can be combined with other structures</li>
                         </ul>
-                        <div class="product-amount">$5M — $500M+</div>
+                        <div class="program-amount">$5M – $500M+</div>
                     </div>
-                    
-                    <div class="product-card">
-                        <span class="product-number">02</span>
+
+                    <div class="program-card">
+                        <span class="program-number">02</span>
                         <h4>Business-Based Funding (BBF)</h4>
                         <ul>
                             <li>Growth capital anchored to performance</li>
@@ -1640,11 +1672,11 @@
                             <li>Requires recent financials</li>
                             <li>Complements ABL in blended structures</li>
                         </ul>
-                        <div class="product-amount">$5M — $200M</div>
+                        <div class="program-amount">$5M – $200M</div>
                     </div>
-                    
-                    <div class="product-card">
-                        <span class="product-number">03</span>
+
+                    <div class="program-card">
+                        <span class="program-number">03</span>
                         <h4>Project-Based Funding (PBF)</h4>
                         <ul>
                             <li>Revenue-generating projects</li>
@@ -1652,11 +1684,11 @@
                             <li>Focus on viability and cash flows</li>
                             <li>Structured to match milestones</li>
                         </ul>
-                        <div class="product-amount">$5M — $500M+</div>
+                        <div class="program-amount">$5M – $500M+</div>
                     </div>
-                    
-                    <div class="product-card">
-                        <span class="product-number">04</span>
+
+                    <div class="program-card">
+                        <span class="program-number">04</span>
                         <h4>Post-Funding Trade Program</h4>
                         <ul>
                             <li>Optional institutional trade platform</li>
@@ -1664,16 +1696,16 @@
                             <li>Potential non-recourse outcome</li>
                             <li>Available where elected and eligible</li>
                         </ul>
-                        <div class="product-amount">Program Dependent</div>
+                        <div class="program-amount">Program Dependent</div>
                     </div>
                 </div>
             </div>
-            
+
             <!-- Early-Stage -->
             <div id="early-stage" class="tab-section">
-                <div class="products-grid">
-                    <div class="product-card">
-                        <span class="product-number">05</span>
+                <div class="programs-grid">
+                    <div class="program-card">
+                        <span class="program-number">05</span>
                         <h4>Angel Syndicate Network</h4>
                         <ul>
                             <li>200+ active angel investors</li>
@@ -1681,11 +1713,11 @@
                             <li>Pre-seed and seed rounds</li>
                             <li>Tech, healthcare, consumer, clean energy</li>
                         </ul>
-                        <div class="product-amount">$250K — $5M</div>
+                        <div class="program-amount">$250K – $5M</div>
                     </div>
-                    
-                    <div class="product-card">
-                        <span class="product-number">06</span>
+
+                    <div class="program-card">
+                        <span class="program-number">06</span>
                         <h4>Micro-VC Fund of Funds</h4>
                         <ul>
                             <li>Access to emerging micro-VCs</li>
@@ -1693,11 +1725,11 @@
                             <li>20-30 startup portfolio diversification</li>
                             <li>$10M - $50M fund sizes</li>
                         </ul>
-                        <div class="product-amount">$500K — $2M</div>
+                        <div class="program-amount">$500K – $2M</div>
                     </div>
-                    
-                    <div class="product-card">
-                        <span class="product-number">07</span>
+
+                    <div class="program-card">
+                        <span class="program-number">07</span>
                         <h4>Revenue-Based Financing</h4>
                         <ul>
                             <li>Non-dilutive for bootstrapped startups</li>
@@ -1705,11 +1737,11 @@
                             <li>1.3-2.0x repayment cap</li>
                             <li>No board seats required</li>
                         </ul>
-                        <div class="product-amount">$100K — $5M</div>
+                        <div class="program-amount">$100K – $5M</div>
                     </div>
-                    
-                    <div class="product-card">
-                        <span class="product-number">08</span>
+
+                    <div class="program-card">
+                        <span class="program-number">08</span>
                         <h4>Venture Debt</h4>
                         <ul>
                             <li>Complement to equity rounds</li>
@@ -1717,16 +1749,16 @@
                             <li>Minimal dilution (warrant coverage)</li>
                             <li>Post Series A/B companies</li>
                         </ul>
-                        <div class="product-amount">$1M — $50M</div>
+                        <div class="program-amount">$1M – $50M</div>
                     </div>
                 </div>
             </div>
-            
+
             <!-- Growth Capital -->
             <div id="growth" class="tab-section">
-                <div class="products-grid">
-                    <div class="product-card">
-                        <span class="product-number">09</span>
+                <div class="programs-grid">
+                    <div class="program-card">
+                        <span class="program-number">09</span>
                         <h4>Lower Middle Market PE</h4>
                         <ul>
                             <li>EBITDA $2M - $15M companies</li>
@@ -1734,11 +1766,11 @@
                             <li>Platform and add-on acquisitions</li>
                             <li>Manufacturing, services, distribution</li>
                         </ul>
-                        <div class="product-amount">$10M — $100M</div>
+                        <div class="program-amount">$10M – $100M</div>
                     </div>
-                    
-                    <div class="product-card">
-                        <span class="product-number">10</span>
+
+                    <div class="program-card">
+                        <span class="program-number">10</span>
                         <h4>Growth Equity</h4>
                         <ul>
                             <li>Minority positions preferred</li>
@@ -1746,11 +1778,11 @@
                             <li>20%+ revenue growth</li>
                             <li>Tech-enabled businesses</li>
                         </ul>
-                        <div class="product-amount">$15M — $100M</div>
+                        <div class="program-amount">$15M – $100M</div>
                     </div>
-                    
-                    <div class="product-card">
-                        <span class="product-number">11</span>
+
+                    <div class="program-card">
+                        <span class="program-number">11</span>
                         <h4>Mezzanine Financing</h4>
                         <ul>
                             <li>Subordinated debt with equity kickers</li>
@@ -1758,11 +1790,11 @@
                             <li>Higher yield for investors</li>
                             <li>Flexible terms</li>
                         </ul>
-                        <div class="product-amount">$10M — $100M</div>
+                        <div class="program-amount">$10M – $100M</div>
                     </div>
-                    
-                    <div class="product-card">
-                        <span class="product-number">12</span>
+
+                    <div class="program-card">
+                        <span class="program-number">12</span>
                         <h4>Buyout Financing</h4>
                         <ul>
                             <li>Management buyouts (MBO)</li>
@@ -1770,16 +1802,16 @@
                             <li>Succession planning exits</li>
                             <li>Carve-outs from larger entities</li>
                         </ul>
-                        <div class="product-amount">$25M — $500M</div>
+                        <div class="program-amount">$25M – $500M</div>
                     </div>
                 </div>
             </div>
-            
+
             <!-- Working Capital -->
             <div id="working-capital" class="tab-section">
-                <div class="products-grid">
-                    <div class="product-card">
-                        <span class="product-number">13</span>
+                <div class="programs-grid">
+                    <div class="program-card">
+                        <span class="program-number">13</span>
                         <h4>Invoice Factoring</h4>
                         <ul>
                             <li>Up to 90% advance on invoices</li>
@@ -1787,11 +1819,11 @@
                             <li>No long-term contracts</li>
                             <li>B2B invoices</li>
                         </ul>
-                        <div class="product-amount">$50K — $10M</div>
+                        <div class="program-amount">$50K – $10M</div>
                     </div>
-                    
-                    <div class="product-card">
-                        <span class="product-number">14</span>
+
+                    <div class="program-card">
+                        <span class="program-number">14</span>
                         <h4>Purchase Order Financing</h4>
                         <ul>
                             <li>Fund large customer orders</li>
@@ -1799,11 +1831,11 @@
                             <li>Bridge production gaps</li>
                             <li>Manufacturing & distribution</li>
                         </ul>
-                        <div class="product-amount">$100K — $5M</div>
+                        <div class="program-amount">$100K – $5M</div>
                     </div>
-                    
-                    <div class="product-card">
-                        <span class="product-number">15</span>
+
+                    <div class="program-card">
+                        <span class="program-number">15</span>
                         <h4>Asset-Based Lending</h4>
                         <ul>
                             <li>Secured by inventory & receivables</li>
@@ -1811,11 +1843,11 @@
                             <li>Flexible borrowing base</li>
                             <li>Traditional ABL structure</li>
                         </ul>
-                        <div class="product-amount">$1M — $50M</div>
+                        <div class="program-amount">$1M – $50M</div>
                     </div>
-                    
-                    <div class="product-card">
-                        <span class="product-number">16</span>
+
+                    <div class="program-card">
+                        <span class="program-number">16</span>
                         <h4>Supply Chain Finance</h4>
                         <ul>
                             <li>Supplier early payment programs</li>
@@ -1823,16 +1855,16 @@
                             <li>Working capital optimization</li>
                             <li>Large enterprise programs</li>
                         </ul>
-                        <div class="product-amount">$10M — $500M</div>
+                        <div class="program-amount">$10M – $500M</div>
                     </div>
                 </div>
             </div>
-            
+
             <!-- Real Estate -->
             <div id="real-estate" class="tab-section">
-                <div class="products-grid">
-                    <div class="product-card">
-                        <span class="product-number">17</span>
+                <div class="programs-grid">
+                    <div class="program-card">
+                        <span class="program-number">17</span>
                         <h4>Bridge Loans</h4>
                         <ul>
                             <li>Quick close (7-21 days)</li>
@@ -1840,11 +1872,11 @@
                             <li>Up to 75% LTV</li>
                             <li>All property types</li>
                         </ul>
-                        <div class="product-amount">$1M — $100M</div>
+                        <div class="program-amount">$1M – $100M</div>
                     </div>
-                    
-                    <div class="product-card">
-                        <span class="product-number">18</span>
+
+                    <div class="program-card">
+                        <span class="program-number">18</span>
                         <h4>Construction Financing</h4>
                         <ul>
                             <li>Ground-up development</li>
@@ -1852,11 +1884,11 @@
                             <li>Interest reserves included</li>
                             <li>Residential & commercial</li>
                         </ul>
-                        <div class="product-amount">$5M — $150M</div>
+                        <div class="program-amount">$5M – $150M</div>
                     </div>
-                    
-                    <div class="product-card">
-                        <span class="product-number">19</span>
+
+                    <div class="program-card">
+                        <span class="program-number">19</span>
                         <h4>Permanent Financing</h4>
                         <ul>
                             <li>CMBS & agency loans</li>
@@ -1864,11 +1896,11 @@
                             <li>Competitive rates</li>
                             <li>Stabilized assets</li>
                         </ul>
-                        <div class="product-amount">$5M — $500M+</div>
+                        <div class="program-amount">$5M – $500M+</div>
                     </div>
-                    
-                    <div class="product-card">
-                        <span class="product-number">20</span>
+
+                    <div class="program-card">
+                        <span class="program-number">20</span>
                         <h4>Multifamily Financing</h4>
                         <ul>
                             <li>Fannie Mae & Freddie Mac</li>
@@ -1876,16 +1908,16 @@
                             <li>Student housing</li>
                             <li>Agency execution</li>
                         </ul>
-                        <div class="product-amount">$3M — $200M</div>
+                        <div class="program-amount">$3M – $200M</div>
                     </div>
                 </div>
             </div>
-            
+
             <!-- Specialty -->
             <div id="specialty" class="tab-section">
-                <div class="products-grid">
-                    <div class="product-card">
-                        <span class="product-number">21</span>
+                <div class="programs-grid">
+                    <div class="program-card">
+                        <span class="program-number">21</span>
                         <h4>Equipment Leasing</h4>
                         <ul>
                             <li>Heavy machinery & vehicles</li>
@@ -1893,11 +1925,11 @@
                             <li>Technology assets</li>
                             <li>Flexible terms</li>
                         </ul>
-                        <div class="product-amount">$500K — $50M</div>
+                        <div class="program-amount">$500K – $50M</div>
                     </div>
-                    
-                    <div class="product-card">
-                        <span class="product-number">22</span>
+
+                    <div class="program-card">
+                        <span class="program-number">22</span>
                         <h4>Healthcare Financing</h4>
                         <ul>
                             <li>Medical practices</li>
@@ -1905,11 +1937,11 @@
                             <li>Senior care facilities</li>
                             <li>Healthcare real estate</li>
                         </ul>
-                        <div class="product-amount">$5M — $100M</div>
+                        <div class="program-amount">$5M – $100M</div>
                     </div>
-                    
-                    <div class="product-card">
-                        <span class="product-number">23</span>
+
+                    <div class="program-card">
+                        <span class="program-number">23</span>
                         <h4>Media & Entertainment</h4>
                         <ul>
                             <li>Film & TV production</li>
@@ -1917,11 +1949,11 @@
                             <li>Gaming & esports</li>
                             <li>Content monetization</li>
                         </ul>
-                        <div class="product-amount">$5M — $200M</div>
+                        <div class="program-amount">$5M – $200M</div>
                     </div>
-                    
-                    <div class="product-card">
-                        <span class="product-number">24</span>
+
+                    <div class="program-card">
+                        <span class="program-number">24</span>
                         <h4>Royalty & IP Monetization</h4>
                         <ul>
                             <li>Patent portfolios</li>
@@ -1929,16 +1961,16 @@
                             <li>Pharmaceutical royalties</li>
                             <li>Brand licensing</li>
                         </ul>
-                        <div class="product-amount">$10M — $500M</div>
+                        <div class="program-amount">$10M – $500M</div>
                     </div>
                 </div>
             </div>
-            
+
             <!-- Government -->
             <div id="government" class="tab-section">
-                <div class="products-grid">
-                    <div class="product-card">
-                        <span class="product-number">25</span>
+                <div class="programs-grid">
+                    <div class="program-card">
+                        <span class="program-number">25</span>
                         <h4>SBA 7(a) Loans</h4>
                         <ul>
                             <li>Working capital & expansion</li>
@@ -1946,11 +1978,11 @@
                             <li>Long-term amortization</li>
                             <li>Government guaranteed</li>
                         </ul>
-                        <div class="product-amount">$500K — $5M</div>
+                        <div class="program-amount">$500K – $5M</div>
                     </div>
-                    
-                    <div class="product-card">
-                        <span class="product-number">26</span>
+
+                    <div class="program-card">
+                        <span class="program-number">26</span>
                         <h4>SBA 504 Loans</h4>
                         <ul>
                             <li>Real estate & equipment</li>
@@ -1958,11 +1990,11 @@
                             <li>10-20% down payment</li>
                             <li>Fixed assets focus</li>
                         </ul>
-                        <div class="product-amount">$500K — $20M</div>
+                        <div class="program-amount">$500K – $20M</div>
                     </div>
-                    
-                    <div class="product-card">
-                        <span class="product-number">27</span>
+
+                    <div class="program-card">
+                        <span class="program-number">27</span>
                         <h4>State & Local Incentives</h4>
                         <ul>
                             <li>Tax increment financing</li>
@@ -1970,11 +2002,11 @@
                             <li>Job creation incentives</li>
                             <li>Economic development programs</li>
                         </ul>
-                        <div class="product-amount">$1M — $100M</div>
+                        <div class="program-amount">$1M – $100M</div>
                     </div>
-                    
-                    <div class="product-card">
-                        <span class="product-number">28</span>
+
+                    <div class="program-card">
+                        <span class="program-number">28</span>
                         <h4>Federal R&D Programs</h4>
                         <ul>
                             <li>SBIR/STTR grants</li>
@@ -1982,35 +2014,35 @@
                             <li>NIH research funding</li>
                             <li>Non-dilutive capital</li>
                         </ul>
-                        <div class="product-amount">$100K — $10M</div>
+                        <div class="program-amount">$100K – $10M</div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Intake Requirements -->
+        <!-- Requirements Section -->
         <section id="requirements">
             <div class="section-header">
                 <div class="section-number">03</div>
-                <div class="section-title-group">
+                <div class="section-info">
                     <h2>What We Need</h2>
                     <p>Documentation required to begin the funding process</p>
                 </div>
             </div>
-            
+
             <div class="intake-section">
                 <div class="intake-grid">
                     <div class="intake-block">
                         <h4>1) Quick Fit</h4>
                         <ul>
-                            <li>Funding amount (minimum $5M+)</li>
+                            <li>Funding amount ($5M+ for tokenization; lower minimums for other programs)</li>
                             <li>Deal type: asset-backed, business-backed, or project</li>
                             <li>Jurisdiction (country/state)</li>
                             <li>For projects: ARV + current stage</li>
                             <li>For assets/business: verified value, revenue/cash flow</li>
                         </ul>
                     </div>
-                    
+
                     <div class="intake-block">
                         <h4>2) Capital Stack & Terms</h4>
                         <ul>
@@ -2021,7 +2053,7 @@
                             <li>Ability to cover early carry costs</li>
                         </ul>
                     </div>
-                    
+
                     <div class="intake-block">
                         <h4>3) Project Package</h4>
                         <ul>
@@ -2032,7 +2064,7 @@
                             <li>Exit plan (sale or refinance) + timeline</li>
                         </ul>
                     </div>
-                    
+
                     <div class="intake-block">
                         <h4>4) Initial Documents</h4>
                         <ul>
@@ -2048,58 +2080,57 @@
         </section>
     </div>
 
-    <!-- Disclaimers -->
-    <section id="disclosures" class="disclaimer-section">
-        <div class="disclaimer-header">
-            <h3>Important Disclosures</h3>
-            <p style="color: var(--silver); max-width: 600px; margin: 0 auto;">
-                Please review the following legal notices before engaging with our services.
-            </p>
-        </div>
-        
-        <div class="disclaimer-grid">
-            <div class="disclaimer-card">
-                <h4>Regulatory Status</h4>
-                <p>
-                    KA Global LLC is not a securities broker-dealer, investment adviser, or registered with the SEC. 
-                    We operate as a capital placement firm facilitating introductions between clients and our funding partners.
-                </p>
+    <!-- Disclosures Section -->
+    <section id="disclosures" class="disclosures-section">
+        <div class="disclosures-inner">
+            <div class="disclosures-header">
+                <h3>Important Disclosures</h3>
+                <p>Please review the following legal notices before engaging with our services.</p>
             </div>
-            
-            <div class="disclaimer-card">
-                <h4>Funding Process</h4>
-                <p>
-                    Final funding decisions are made by partner lenders and investors based on their underwriting criteria. 
-                    Tokenization fees are refundable if we are unable to successfully fund your deal per agreement terms.
-                </p>
-            </div>
-            
-            <div class="disclaimer-card">
-                <h4>Risk Disclosure</h4>
-                <p>
-                    All funding arrangements involve risk. Carefully evaluate terms, conditions, interest rates, and 
-                    repayment obligations before entering any agreement. Consult your own legal and financial advisers.
-                </p>
-            </div>
-            
-            <div class="disclaimer-card">
-                <h4>Compliance</h4>
-                <p>
-                    All clients must complete KYC/AML verification and provide source of funds documentation. 
-                    We reserve the right to decline engagements that do not meet our compliance standards.
-                </p>
+
+            <div class="disclosures-grid">
+                <div class="disclosure-card">
+                    <h4>Regulatory Status</h4>
+                    <p>
+                        KA Global LLC is not a securities broker-dealer, investment adviser, or registered with the SEC. 
+                        We operate as a capital placement firm facilitating introductions between clients and our funding partners.
+                    </p>
+                </div>
+
+                <div class="disclosure-card">
+                    <h4>Funding Process</h4>
+                    <p>
+                        Final funding decisions are made by partner lenders and investors based on their underwriting criteria. 
+                        Tokenization fees are refundable if we are unable to successfully fund your deal per agreement terms.
+                    </p>
+                </div>
+
+                <div class="disclosure-card">
+                    <h4>Risk Disclosure</h4>
+                    <p>
+                        All funding arrangements involve risk. Carefully evaluate terms, conditions, interest rates, and 
+                        repayment obligations before entering any agreement. Consult your own legal and financial advisers.
+                    </p>
+                </div>
+
+                <div class="disclosure-card">
+                    <h4>Compliance</h4>
+                    <p>
+                        All clients must complete KYC/AML verification and provide source of funds documentation. 
+                        We reserve the right to decline engagements that do not meet our compliance standards.
+                    </p>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- CTA Section -->
     <section id="contact" class="cta-section">
+        <div class="cta-glow"></div>
         <div class="cta-content">
             <h2>Ready to <em>Begin?</em></h2>
-            <p style="color: var(--silver); font-size: 1.1rem;">
-                Schedule an intake call to discuss your project and explore the best funding options.
-            </p>
-            
+            <p>Schedule an intake call to discuss your project and explore the best funding options.</p>
+
             <div class="contact-card">
                 <div class="contact-name">Andrey Fedorishin</div>
                 <div class="contact-details">
@@ -2107,10 +2138,10 @@
                     <a href="tel:+15855009643">585-500-9643</a>
                 </div>
             </div>
-            
+
             <div class="cta-buttons">
-                <a href="tel:+15855009643" class="btn-primary">Schedule a Call</a>
-                <a href="mailto:andrey@kaglobal.io?subject=Funding Inquiry" class="btn-outline">Send an Email</a>
+                <a href="tel:+15855009643" class="btn btn-primary">Schedule a Call</a>
+                <a href="mailto:andrey@kaglobal.io?subject=Funding Inquiry" class="btn btn-secondary">Send an Email</a>
             </div>
         </div>
     </section>
@@ -2121,62 +2152,48 @@
     </footer>
 
     <script>
-
-        // Mobile Navigation Drawer
+        // Mobile Navigation
         const navToggle = document.getElementById('navToggle');
         const navDrawer = document.getElementById('navDrawer');
         const navBackdrop = document.getElementById('navBackdrop');
         const navClose = document.getElementById('navClose');
 
         const openNav = () => {
-            if (!navDrawer) return;
             navDrawer.classList.add('open');
             navBackdrop.classList.add('open');
-            navDrawer.setAttribute('aria-hidden', 'false');
-            navToggle.setAttribute('aria-expanded', 'true');
             document.body.style.overflow = 'hidden';
         };
 
         const closeNav = () => {
-            if (!navDrawer) return;
             navDrawer.classList.remove('open');
             navBackdrop.classList.remove('open');
-            navDrawer.setAttribute('aria-hidden', 'true');
-            navToggle.setAttribute('aria-expanded', 'false');
             document.body.style.overflow = '';
         };
 
-        navToggle && navToggle.addEventListener('click', openNav);
-        navClose && navClose.addEventListener('click', closeNav);
-        navBackdrop && navBackdrop.addEventListener('click', closeNav);
+        navToggle?.addEventListener('click', openNav);
+        navClose?.addEventListener('click', closeNav);
+        navBackdrop?.addEventListener('click', closeNav);
 
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape') closeNav();
         });
 
-        // Close drawer after clicking a link
         document.querySelectorAll('#navDrawer a[href^="#"]').forEach(a => {
-            a.addEventListener('click', () => closeNav());
+            a.addEventListener('click', closeNav);
         });
 
-        // Tab Navigation
-        document.querySelectorAll('.nav-pill').forEach(pill => {
+        // Tab Navigation for Programs
+        document.querySelectorAll('.program-pill').forEach(pill => {
             pill.addEventListener('click', function() {
-                // Remove active from all pills
-                document.querySelectorAll('.nav-pill').forEach(p => p.classList.remove('active'));
-                // Add active to clicked pill
+                document.querySelectorAll('.program-pill').forEach(p => p.classList.remove('active'));
                 this.classList.add('active');
-                
-                // Hide all tab sections
                 document.querySelectorAll('.tab-section').forEach(section => section.classList.remove('active'));
-                
-                // Show selected tab section
                 const tabId = this.getAttribute('data-tab');
                 document.getElementById(tabId).classList.add('active');
             });
         });
 
-        // Smooth scroll for anchor links
+        // Smooth scroll
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
                 e.preventDefault();
@@ -2190,7 +2207,7 @@
             });
         });
 
-        // Intersection Observer for fade-in animations
+        // Scroll animations
         const observerOptions = {
             threshold: 0.1,
             rootMargin: '0px 0px -50px 0px'
@@ -2205,19 +2222,17 @@
             });
         }, observerOptions);
 
-        // Observe elements
-        document.querySelectorAll('.section-header, .token-section, .intake-section, .disclaimer-card').forEach(el => {
+        document.querySelectorAll('.section-header, .token-section, .intake-section, .disclosure-card, .engagement-card').forEach(el => {
             el.style.opacity = '0';
             el.style.transform = 'translateY(30px)';
-            el.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
             observer.observe(el);
         });
 
-        // Product card stagger animation
-        document.querySelectorAll('.product-card').forEach((card, index) => {
+        document.querySelectorAll('.program-card').forEach((card, index) => {
             card.style.opacity = '0';
-            card.style.transform = 'translateY(30px)';
-            card.style.transition = `opacity 0.6s ease ${index * 0.1}s, transform 0.6s ease ${index * 0.1}s`;
+            card.style.transform = 'translateY(20px)';
+            card.style.transition = `opacity 0.5s ease ${index * 0.08}s, transform 0.5s ease ${index * 0.08}s`;
             observer.observe(card);
         });
     </script>
